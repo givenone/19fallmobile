@@ -2,7 +2,6 @@ from django.db import models
 from Store.models import StoreProfile, Menu
 from User.models import UserProfile
 
-# Create your models here.
 
 class Order(models.Model):
     request = models.TextField(max_length=100)
@@ -12,7 +11,7 @@ class Order(models.Model):
     store = models.ForeignKey(StoreProfile, related_name='orders', on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, related_name='orders', on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    option = models.TextField(max_length=300)
 
     class Meta:
         ordering = ['-created']
-
