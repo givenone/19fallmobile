@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import (permissions, status)
+from rest_framework.views import APIView
+from .serializers import StoreSerializer
+from .models import (StoreProfile, Menu)
 
-# Create your views here.
+
+class StoreList(APIView):
+    permission_classes = (permissions.IsAuthenticated, )
+
+
+class StoreDetail(APIView):
+    permission_classes = (permissions.IsAuthenticated, )

@@ -23,10 +23,13 @@ class StoreSerializer(serializers.ModelSerializer):
 
 # Store 주인장 입장에서 보는 Store
 class StoreProfileSerializer(serializers.ModelSerializer):
+    username =serializers.ReadOnlyField(source='user.username')
     email = serializers.ReadOnlyField(source='user.email')
     phone = serializers.ReadOnlyField(source='user.phone')
+    menus = MenuSerializer(many=True, read_only=True)
+
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information', 'phone', 'email')
+        fields = ('id', 'username', 'name', 'information', 'phone', 'email', 'menus')
 

@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import (permissions, status)
+from rest_framework.views import APIView
+from .serializers import UserSerializer
+from .models import (UserProfile)
 
-# Create your views here.
+
+class UserDetail(APIView):
+    permission_classes = (permissions.IsAuthenticated, )
