@@ -3,23 +3,43 @@ package com.example.ezorder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.R.layout
+import androidx.annotation.NonNull
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.MenuItem
+import androidx.navigation.Navigation
 
 
 class MainStore : AppCompatActivity() {
-    //idk how to do the binding anymore...
-    //private lateinit var binding: ActivityMainStoreBinding
-
-    //current random value of the store name
-    //should match store name in data base when actually implemented
-    //private val storeName: StoreName = StoreName("Cass Town")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = DataBindingUtil.setContentView(this, R.layout.activity_main_store)
         setContentView(R.layout.activity_main_store)
 
-        //binding.storeName = storeName
+        val bottomNavigationView = findViewById(R.id.nav_store) as BottomNavigationView
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+            object : BottomNavigationView.OnNavigationItemSelectedListener {
+                override fun onNavigationItemSelected(item: MenuItem): Boolean {
+                    when (item.getItemId()) {
+                        R.id.manage_order -> {// TODO :: navigation in bottomnavigationView (Unsure)
+                            Navigation.findNavController().navigate(R.id.action_profile_store_to_manage_orders)
+                        }
+                        R.id.manage_my_store -> {
+                            Navigation.findNavController().navigate(R.id.action_manage_orders_to_profile_store)
+                        }
+                    }
+                    return false
+                }
+            })
 
     }
 }
