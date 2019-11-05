@@ -1,68 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--This is sign page when store-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-    <com.google.android.material.textfield.TextInputLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="79dp">
+        android:layout_height="260dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+<!--        to include image-->
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Id" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="260dp"
+            android:background="@drawable/store_black_bg" />
 
-    <com.google.android.material.textfield.TextInputLayout
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/logo_red" />
+
+    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email_text"
         android:layout_width="match_parent"
-        android:layout_height="78dp">
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#000"
+        android:background="#f0f0f4"
+        android:padding="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_shapes_2"
+        android:drawablePadding="16dp"
+        android:hint="E-MAIL" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/user"
         android:layout_width="match_parent"
-        android:layout_height="93dp">
+        android:layout_height="wrap_content"
+        android:hint="USERNAME"
+        android:inputType="text"
+        android:textColor="#000"
+        android:background="#f0f0f4"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_shape_1"
+        android:drawablePadding="16dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="83dp">
+        android:layout_height="wrap_content"
+        android:hint="PASSWORD"
+        android:inputType="textPassword"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/ic_tool_6"
+        android:drawablePadding="16dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phonenumber" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/phone_no"
         android:layout_width="match_parent"
-        android:layout_height="93dp">
+        android:layout_height="wrap_content"
+        android:hint="PHONE"
+        android:inputType="textPassword"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/ic_shape_phone"
+        android:drawablePadding="16dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Storename" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/store_name"
         android:layout_width="match_parent"
-        android:layout_height="134dp">
+        android:layout_height="wrap_content"
+        android:hint="STORE NAME"
+        android:inputType="textPassword"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/ic_shape_store"
+        android:drawablePadding="16dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="StoreInfo" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/store_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="STORE INFO"
+        android:inputType="textPassword"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/ic_shape_info"
+        android:drawablePadding="16dp" />
+
 
     <Button
         android:id="@+id/store_signup_button"
@@ -70,3 +130,4 @@
         android:layout_height="wrap_content"
         android:text="Sign Up" />
 </LinearLayout>
+

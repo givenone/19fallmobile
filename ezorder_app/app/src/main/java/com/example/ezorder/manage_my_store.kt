@@ -17,7 +17,7 @@ class manage_my_store : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage_my_store, container, false)
+        return inflater.inflate(R.layout.fragment_edit_my_store, container, false)
     }
 
     companion object {
