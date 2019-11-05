@@ -20,5 +20,7 @@ class manage_my_store : Fragment() {
         return inflater.inflate(R.layout.fragment_manage_my_store, container, false)
     }
 
-
+    companion object {
+        fun newInstance(): manage_my_store = manage_my_store()
+    }
 }

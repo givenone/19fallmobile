@@ -13,24 +13,25 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <RadioGroup
+        android:id="@+id/SU"
         android:layout_width="match_parent"
         android:layout_height="495dp">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/SU_store"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Store" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/SU_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="User" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/SU_submit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next" />

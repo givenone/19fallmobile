@@ -20,5 +20,9 @@ class manage_orders : Fragment() {
         return inflater.inflate(R.layout.fragment_manage_orders, container, false)
     }
 
+    companion object {
+        fun newInstance(): manage_orders = manage_orders()
+    }
+
 
 }

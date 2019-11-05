@@ -18,5 +18,9 @@ class order : Fragment() {
         return inflater.inflate(R.layout.fragment_order, container, false)
     }
 
+    companion object {
+        fun newInstance(): order = order()
+    }
+
 
 }

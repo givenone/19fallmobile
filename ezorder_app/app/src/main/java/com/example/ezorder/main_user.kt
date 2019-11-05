@@ -1,29 +1,48 @@
 package com.example.ezorder
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.Fragment
 
 class main_user : AppCompatActivity() {
+
+    private val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
+        when (item.itemId) {
+            R.id.navigation_search -> {
+                val fragmentA = search.newInstance()
+                openFragment(fragmentA)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_order -> {
+                val fragmentB = order.newInstance()
+                openFragment(fragmentB)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_profile -> {
+                val fragmentC = profile.newInstance()
+                openFragment(fragmentC)
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        return@OnNavigationItemSelectedListener false
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.user_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_user)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_search, R.id.navigation_order, R.id.navigation_profile
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_user)
+        bottomNavigationView.setOnNavigationItemSelectedListener(mlistener);
+
+        openFragment(profile.newInstance()) // default fragment : profile !
     }
 }

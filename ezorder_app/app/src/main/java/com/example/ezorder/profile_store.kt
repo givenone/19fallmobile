@@ -6,27 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
-import com.example.android.navigation.databinding.FragmentTitleBinding
+import kotlinx.android.synthetic.main.fragment_profile_store.view.*
+import kotlinx.android.synthetic.main.fragment_search.view.*
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [profile_store.OnFragmentInteractionListener] interface
- * to handle interaction events.
- */
 class profile_store : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding: FragmentTitleBinding =
-            DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title, container, false)
-        binding.playButton.setOnClickListener{view: View ->
-            Navigation.findNavController(view).navigate(R.id.action_profile_store_to_manage_orders)
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view: View = inflater!!.inflate(R.layout.fragment_profile_store, container, false)
 
-        return binding.root
+        view.edit_button.setOnClickListener {
+            val transaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.store_container, manage_my_store.newInstance())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+        return view
+
+    }
+
+    companion object {
+        fun newInstance(): profile_store = profile_store()
     }
 }

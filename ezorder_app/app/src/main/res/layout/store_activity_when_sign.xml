@@ -65,8 +65,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/store_signup_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign" />
+        android:text="Sign Up" />
 </LinearLayout>
