@@ -10,7 +10,7 @@ import android.view.ViewGroup
 /**
  * A simple [Fragment] subclass.
  */
-class manage_my_store : Fragment() {
+class edit_my_store : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,6 +21,6 @@ class manage_my_store : Fragment() {
     }
 
     companion object {
-        fun newInstance(): manage_my_store = manage_my_store()
+        fun newInstance(): edit_my_store = edit_my_store()
     }
 }
