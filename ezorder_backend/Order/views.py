@@ -12,5 +12,3 @@ class OrderList(APIView):
 
 class OrderDetail(APIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner, )
-
-
