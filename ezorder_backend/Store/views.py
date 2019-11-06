@@ -33,5 +33,3 @@ class StoreDetail(APIView):
         store = self.get_object(pk)
         serializer = StoreSerializer(store)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-

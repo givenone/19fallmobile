@@ -1,13 +1,23 @@
 from rest_framework import serializers
 from .models import (StoreProfile, Menu)
-from User.models import CustomUser
+import json
 
-from django.contrib.auth.hashers import make_password
+
+# parses input json option to string, and reverse.
+class OptionField(serializers.Field):
+    def get_attribute(self, instance):
+        return instance.option
+
+    def to_representation(self, value):
+        return json.loads(value)
+
+    def to_internal_value(self, data):
+        return json.dumps(data)
 
 
 class MenuSerializer(serializers.ModelSerializer):
     # FIXME: 영 못미더움... 나중에 꼭 테스트해보자
-    option = serializers.JSONField()
+    option = OptionField()
 
     class Meta:
         model = Menu

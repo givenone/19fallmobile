@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     isStore = models.BooleanField(default=True)
-    phone = models.TextField(max_length=15, null=False)
+    phone = models.CharField(max_length=15, null=False)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -20,4 +20,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, related_name='user_profile', on_delete=models.CASCADE)
-    nickname = models.TextField(max_length=20, null=True)
+    nickname = models.CharField(max_length=20, null=True)
+
+
