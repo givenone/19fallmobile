@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/manage_my_store"
-        android:name="com.example.ezorder.manage_my_store"
+        android:name="com.example.ezorder.edit_my_store"
         android:label="fragment_manage_my_store"
-        tools:layout="@layout/fragment_manage_my_store" >
+        tools:layout="@layout/fragment_edit_my_store" >
         <action
             android:id="@+id/action_manage_my_store_to_manage_orders"
             app:destination="@id/manage_orders" />
