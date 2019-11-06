@@ -21,113 +21,135 @@
         <ImageView
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="60dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:background="@drawable/logo_red" />
 
     </FrameLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_text"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:textColor="#000"
-        android:background="#f0f0f4"
-        android:padding="12dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:drawableLeft="@drawable/ic_shapes_2"
-        android:drawablePadding="16dp"
-        android:hint="E-MAIL" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="USERNAME"
-        android:inputType="text"
-        android:textColor="#000"
-        android:background="#f0f0f4"
-        android:padding="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:drawableLeft="@drawable/ic_shape_1"
-        android:drawablePadding="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="PASSWORD"
-        android:inputType="textPassword"
-        android:background="#f0f0f4"
-        android:textColor="#000"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="12dp"
-        android:drawableLeft="@drawable/ic_tool_6"
-        android:drawablePadding="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_shapes_2"
+                android:drawablePadding="16dp"
+                android:hint="E-MAIL"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000"
+                android:textSize="18sp" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/phone_no"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="PHONE"
-        android:inputType="textPassword"
-        android:background="#f0f0f4"
-        android:textColor="#000"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="12dp"
-        android:drawableLeft="@drawable/ic_shape_phone"
-        android:drawablePadding="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_shape_1"
+                android:drawablePadding="16dp"
+                android:hint="USERNAME"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/store_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="STORE NAME"
-        android:inputType="textPassword"
-        android:background="#f0f0f4"
-        android:textColor="#000"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="12dp"
-        android:drawableLeft="@drawable/ic_shape_store"
-        android:drawablePadding="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_tool_6"
+                android:drawablePadding="16dp"
+                android:hint="PASSWORD"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textColor="#000" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/store_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="STORE INFO"
-        android:inputType="textPassword"
-        android:background="#f0f0f4"
-        android:textColor="#000"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="12dp"
-        android:drawableLeft="@drawable/ic_shape_info"
-        android:drawablePadding="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_shape_phone"
+                android:drawablePadding="16dp"
+                android:hint="PHONE"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/store_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_shape_store"
+                android:drawablePadding="16dp"
+                android:hint="STORE NAME"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/store_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_corner_input_text"
+                android:drawableLeft="@drawable/ic_shape_info"
+                android:drawablePadding="16dp"
+                android:hint="STORE INFO"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000" />
 
 
-    <Button
-        android:id="@+id/store_signup_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="bottom">
+                <Button
+                    android:id="@+id/store_signup_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ez_red"
+                    android:text="Sign Up"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </LinearLayout>
 

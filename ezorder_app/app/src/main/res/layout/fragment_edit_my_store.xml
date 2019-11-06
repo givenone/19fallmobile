@@ -1,172 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".manage_my_store">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/title_manage_my_store"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/title_manage_my_store"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            android:background="#fff">
 
-        <ImageView
-            android:id="@+id/questionImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="@dimen/layout_margin"
-            android:layout_marginBottom="16dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/store_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_manage_my_store"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="#fff">
 
-        <ScrollView
-            android:id="@+id/store_info"
+                <!--Have to make images editable...-->
+                <!-- Cover Image -->
+                <ImageView
+                    android:id="@+id/cover_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/store_banner_sample" />
+
+                <!-- Round profile image -->
+                <com.alexzh.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/store_profile_sample"
+                    android:layout_marginTop="75dp"
+                    android:layout_gravity="center"
+                    app:view_borderWidth="2dp"
+                    app:view_borderColor="#cccccc" />
+
+            </FrameLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_manage_my_store">
+            android:orientation="vertical"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/title_manage_my_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="Edit Store Information"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:textSize="18sp">
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingBottom="20dp">
 
                 <TextView
-                    android:id="@+id/operating_hours_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Store Name"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/store_name"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/storename_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/store_name"
-                    android:inputType="textPersonName" />
-
-
-                <TextView
-                    android:id="@+id/operating_hours"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin"
-                    android:text="@string/operating_hours"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/operating_hours_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/operating_hours"
-                    android:inputType="textPersonName" />
+                    <EditText
+                        android:id="@+id/store_name_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15.4sp" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/store_info_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin"
-                    android:text="@string/store_contact_info"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Operating Hours"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
 
-                <EditText
-                    android:id="@+id/store_info_edit"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/store_contact_info"
-                    android:inputType="textPersonName" />
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/operating_hours_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15.4sp" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/store_location_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/layout_margin"
-                    android:text="@string/store_location"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Contact Information"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
 
-                <EditText
-                    android:id="@+id/store_location_edit"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/store_location"
-                    android:inputType="textPersonName" />
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15.4sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Location"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15.4sp" />
+                </LinearLayout>
+
 
             </LinearLayout>
-        </ScrollView>
 
-        <ScrollView
-            android:id="@+id/store_menu"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/store_info"
-            app:layout_constraintVertical_bias="0.0">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="bottom">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-
-                <TextView
-                    android:id="@+id/menu_title"
+                <Button
+                    android:id="@+id/edit_cfm_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/menu"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </ScrollView>
+                    android:background="@color/ez_red"
+                    android:text="CONFIRM"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+
+
+
+<!--        <ScrollView-->
+<!--            android:id="@+id/store_info"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/title_manage_my_store">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:textSize="18sp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/operating_hours_text"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/store_name"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/storename_edit"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:autofillHints=""-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="@string/store_name"-->
+<!--                    android:inputType="textPersonName" />-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/operating_hours"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/layout_margin"-->
+<!--                    android:text="@string/operating_hours"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/operating_hours_edit"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:autofillHints=""-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="@string/operating_hours"-->
+<!--                    android:inputType="textPersonName" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/store_info_text"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/layout_margin"-->
+<!--                    android:text="@string/store_contact_info"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/store_info_edit"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:autofillHints=""-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="@string/store_contact_info"-->
+<!--                    android:inputType="textPersonName" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/store_location_text"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/layout_margin"-->
+<!--                    android:text="@string/store_location"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/store_location_edit"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:autofillHints=""-->
+<!--                    android:ems="10"-->
+<!--                    android:hint="@string/store_location"-->
+<!--                    android:inputType="textPersonName" />-->
+
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+
+<!--        <ScrollView-->
+<!--            android:id="@+id/store_menu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/store_info"-->
+<!--            app:layout_constraintVertical_bias="0.0">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/menu_title"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/menu"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="20sp" />-->
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+</RelativeLayout>

@@ -17,19 +17,19 @@
             android:id="@+id/SU_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User" />
+            android:text="USER" />
 
         <RadioButton
             android:id="@+id/SU_store"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Store" />
+            android:text="STORE" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:gravity="center"
-
             android:orientation="horizontal">
 
             <LinearLayout
@@ -44,16 +44,12 @@
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/user_black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="USER"
-                    android:textColor="@android:color/black"
-                    android:textSize="13dp" />
-
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -68,25 +64,24 @@
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/store_black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="STORE"
-                    android:textColor="@android:color/black"
-                    android:textSize="13dp" />
-
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/SU_submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/ez_red"
-            android:text="Next"
-            android:textColor="@android:color/white" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom">
+
+            <Button
+                android:id="@+id/SU_submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ez_red"
+                android:text="Next"
+                android:textColor="@android:color/white"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
 
     </RadioGroup>
 
