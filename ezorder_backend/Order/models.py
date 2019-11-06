@@ -11,7 +11,7 @@ class Order(models.Model):
     store = models.ForeignKey(StoreProfile, related_name='orders', on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, related_name='orders', on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    option = models.TextField(max_length=300)
+    option = models.TextField(max_length=300, blank=True)
 
     class Meta:
         ordering = ['-created']

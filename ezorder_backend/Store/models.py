@@ -3,20 +3,20 @@ from User.models import CustomUser
 
 
 class StoreProfile(models.Model):
+    user = models.OneToOneField(CustomUser, related_name='store_profile', on_delete=models.CASCADE, null=True)
     name = models.TextField(max_length=30)
-    user = models.ForeignKey(CustomUser, related_name='StoreProfile', on_delete=models.CASCADE)
     information = models.TextField(max_length=200)
     # TODO: location은 나중에 구현하자.
 
 
 class Menu(models.Model):
-    name = models.TextField(max_length=20)
+    name = models.TextField(max_length=50)
     store = models.ForeignKey(StoreProfile, related_name='menus', on_delete=models.CASCADE)
-    picture = models.ImageField(null=True)
+    picture = models.ImageField(null=True, blank=True)
     price = models.IntegerField()
     expected_time = models.DurationField()
     take_out_available = models.BooleanField(default=False)
-    option = models.CharField(max_length=300)
+    option = models.TextField(max_length=300, blank=True)
 
 
 '''
