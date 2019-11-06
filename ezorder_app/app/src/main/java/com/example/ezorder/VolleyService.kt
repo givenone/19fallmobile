@@ -7,13 +7,12 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
-import java.lang.reflect.Method
 
 object VolleyService {
 
     val testUrl = "https://localhost:8000/"
 
-    fun GETVolley(context: Context, url : String, res: (String) -> Unit) {
+    fun GETVolley(context: Context, url : String, res: (Boolean, String) -> Unit) {
 
         val myJson = JSONObject()
         val requestBody = myJson.toString()
@@ -21,10 +20,10 @@ object VolleyService {
 
         val testRequest = object : StringRequest(Method.GET, testUrl + url , Response.Listener { response ->
             println("서버 Response 수신: $response")
-            res(response)
+            res(true, response)
         }, Response.ErrorListener { error ->
             Log.d("ERROR", "서버 Response 가져오기 실패: $error")
-            res(error.toString())
+            res(false, error.toString())
         }) {
             override fun getBodyContentType(): String {
                 return "application/json; charset=utf-8"
@@ -38,20 +37,23 @@ object VolleyService {
         Volley.newRequestQueue(context).add(testRequest)
     }
 
-    fun POSTVolley(context: Context, parameterList : HashMap<String, String>, res: (String) -> Unit) {
+    fun POSTVolley(context: Context, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
 
-//        val myJson = JSONObject()
-//        val requestBody = myJson.toString()
+        val myJson = JSONObject()
+        val requestBody = myJson.toString()
 
         val testRequest = object : StringRequest(Method.POST, testUrl , Response.Listener { response ->
             println("서버 Response 수신: $response")
-            res(response)
+            res(true, response)
         }, Response.ErrorListener { error ->
             Log.d("ERROR", "서버 Response 가져오기 실패: $error")
-            res(error.toString())
+            res(false, error.toString())
         }) {
             override fun getBodyContentType(): String {
                 return "application/json; charset=utf-8"
+            }
+            override fun getBody(): ByteArray {
+                return requestBody.toByteArray()
             }
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {

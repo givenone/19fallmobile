@@ -9,6 +9,7 @@
         android:layout_height="79dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Id" />
@@ -19,6 +20,7 @@
         android:layout_height="78dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
@@ -29,6 +31,7 @@
         android:layout_height="93dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password" />
@@ -39,6 +42,7 @@
         android:layout_height="83dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phonenumber" />
@@ -49,6 +53,7 @@
         android:layout_height="93dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_storename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Storename" />
@@ -59,6 +64,7 @@
         android:layout_height="134dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_signup_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="StoreInfo" />

@@ -9,6 +9,7 @@
         android:layout_height="73dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_signup_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="id" />
@@ -19,6 +20,7 @@
         android:layout_height="67dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="email" />
@@ -29,6 +31,7 @@
         android:layout_height="89dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="password" />
@@ -39,6 +42,7 @@
         android:layout_height="75dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_signup_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="phoneNumber" />
@@ -49,6 +53,7 @@
         android:layout_height="239dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_signup_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nickname" />
