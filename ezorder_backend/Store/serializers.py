@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from .models import (StoreProfile, Menu)
+from User.models import CustomUser
+
+from django.contrib.auth.hashers import make_password
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -11,10 +14,10 @@ class MenuSerializer(serializers.ModelSerializer):
         fields = ('id', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
 
 
-# User입장에서 보는 Store
+# User 입장에서 보는 Store
 class StoreSerializer(serializers.ModelSerializer):
     contact = serializers.ReadOnlyField(source='user.phone')
-    menus = MenuSerializer(many=True, read_only=True)
+    menus = MenuSerializer(many=True, read_only=True, allow_null=True)
 
     class Meta:
         model = StoreProfile
@@ -23,10 +26,12 @@ class StoreSerializer(serializers.ModelSerializer):
 
 # Store 주인장 입장에서 보는 Store
 class StoreProfileSerializer(serializers.ModelSerializer):
-    email = serializers.ReadOnlyField(source='user.email')
-    phone = serializers.ReadOnlyField(source='user.phone')
+    username = serializers.CharField(source='user.username')
+    email = serializers.EmailField(source='user.email')
+    isStore = serializers.BooleanField(source='user.isStore')
+    phone = serializers.CharField(source='user.phone')
+    menus = MenuSerializer(many=True)
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information', 'phone', 'email')
-
+        fields = ('id', 'username', 'email', 'isStore', 'phone', 'name', 'information', 'menus')

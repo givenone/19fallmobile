@@ -14,19 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework.authtoken import views
 
 
 urlpatterns = [
     # TODO: url 만들면 나중에 주석 지우기
+    # menu가 필요할까?
     # path('menu/', include('Menu.urls')),
     # path('order/', include('Order.urls')),
-    # path('user/', include('User.urls')),
+    path('user/', include('User.urls')),
     # path('store/', include('Store.urls')),
     path('admin/', admin.site.urls),
-]
-
-urlpatterns += [
-    path('login/', views.obtain_auth_token)
 ]
