@@ -1,12 +1,25 @@
 from rest_framework import (permissions, status)
-from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+
 from .serializers import UserProfileSerializer, SignUpSerializer
 from Store.serializers import StoreProfileSerializer
 from .models import CustomUser
-from .models import UserProfile
-from Store.models import StoreProfile
+
+
+class CustomAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'isStore': user.isStore,
+        })
 
 
 class SignUp(APIView):
@@ -14,14 +27,16 @@ class SignUp(APIView):
         print(request.data)
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'Sign Up Succeed!'}, status=status.HTTP_201_CREATED)
+            user = serializer.save()
+
+            return Response({'isStore': request.data['isStore'], 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
         else:
             return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserDetail(APIView):
     permission_classes = (permissions.IsAuthenticated,)
+
     def get(self, request):
         try:
             user = CustomUser.objects.get(pk=request.user.id)

@@ -7,7 +7,7 @@ from .models import (StoreProfile, Menu)
 
 class StoreList(ListAPIView):
     permission_classes = (permissions.IsAuthenticated, )
-    serializer_class = StoreSerializer
+
 
 
 

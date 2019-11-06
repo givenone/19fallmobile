@@ -27,7 +27,3 @@ urlpatterns = [
     # path('store/', include('Store.urls')),
     path('admin/', admin.site.urls),
 ]
-
-urlpatterns += [
-    re_path(r'^login/', views.obtain_auth_token)
-]
