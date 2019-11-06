@@ -13,6 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RadioButton
+            android:id="@+id/SU_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="USER" />
+
+        <RadioButton
+            android:id="@+id/SU_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="STORE" />
+
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="217dp"
@@ -90,12 +105,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/SU_user"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="USER" />
+
 
             </LinearLayout>
 
@@ -105,12 +115,6 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/SU_store"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="STORE" />
 
             </LinearLayout>
 
