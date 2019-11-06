@@ -1,6 +1,7 @@
 package com.example.ezorder
 
 import android.content.Context
+import android.provider.Settings.Global.getString
 import android.util.Log
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
@@ -8,15 +9,13 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
-object VolleyService {
 
+
+object VolleyService {
+    var token = ""
     val testUrl = "https://localhost:8000/"
 
-    fun GETVolley(context: Context, url : String, res: (Boolean, String) -> Unit) {
-
-        val myJson = JSONObject()
-        val requestBody = myJson.toString()
-
+    fun GETVolley(context: Context, url : String, token : String, res: (Boolean, String) -> Unit) {
 
         val testRequest = object : StringRequest(Method.GET, testUrl + url , Response.Listener { response ->
             println("서버 Response 수신: $response")
@@ -29,8 +28,11 @@ object VolleyService {
                 return "application/json; charset=utf-8"
             }
 
-            override fun getBody(): ByteArray {
-                return requestBody.toByteArray()
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Token"] = token
+                return params
             }
         }
 
@@ -39,8 +41,6 @@ object VolleyService {
 
     fun POSTVolley(context: Context, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
 
-        val myJson = JSONObject()
-        val requestBody = myJson.toString()
 
         val testRequest = object : StringRequest(Method.POST, testUrl , Response.Listener { response ->
             println("서버 Response 수신: $response")
@@ -52,9 +52,7 @@ object VolleyService {
             override fun getBodyContentType(): String {
                 return "application/json; charset=utf-8"
             }
-            override fun getBody(): ByteArray {
-                return requestBody.toByteArray()
-            }
+
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
                 // TODO :: what is needed?

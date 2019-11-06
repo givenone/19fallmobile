@@ -6,12 +6,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
-import jdk.nashorn.internal.runtime.linker.NashornCallSiteDescriptor.getFlags
 import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import org.json.JSONObject
 
 
 class UserSign : AppCompatActivity() {
@@ -31,17 +30,19 @@ class UserSign : AppCompatActivity() {
             val nickname = findViewById<TextInputEditText>(R.id.user_signup_nickname)
 
             val params = HashMap<String, String>()
-            params[""] = id.text.toString()
-            params[""] = password.text.toString()
-            params[""] = email.text.toString()
-            params[""] = phonenumber.text.toString()
-            params[""] = nickname.text.toString()
-
+            params["username"] = id.text.toString()
+            params["password"] = password.text.toString()
+            params["email"] = email.text.toString()
+            params["phone"] = phonenumber.text.toString()
+            params["nickname"] = nickname.text.toString()
+            params["isStore"] = "false"
 
             VolleyService.POSTVolley(this, params) { testSuccess, response ->
                 if (testSuccess) {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
-                    //TODO :: token get needed
+
+                    VolleyService.token = JSONObject(response).getString("token") // get token
+
                     val nextIntent = Intent(this@UserSign, main_user::class.java)
                     nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(nextIntent)
