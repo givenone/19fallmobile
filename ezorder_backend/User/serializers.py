@@ -30,6 +30,23 @@ class SignUpSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+    def update(self, instance, validated_data):
+        instance.username = validated_data['username']
+        instance.email = validated_data['email']
+        instance.password = validated_data['password']
+        instance.phone = validated_data['phone']
+
+        if not instance.isStore:
+            instance.user_profile.nickname = validated_data.get('nickname', instance.user_profile.nickname)
+            instance.user_profile.save()
+        else:
+            instance.store_profile.name = validated_data.get('name', instance.store_profile.name)
+            instance.store_profile.information = validated_data.get('name', instance.store_profile.name)
+            instance.store_profile.save()
+
+        instance.save()
+        return instance
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
