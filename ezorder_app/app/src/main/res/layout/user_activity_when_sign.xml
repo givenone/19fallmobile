@@ -27,7 +27,7 @@
     </FrameLayout>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_text"
+        android:id="@+id/user_signup_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -43,7 +43,7 @@
         android:hint="E-MAIL" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/user"
+        android:id="@+id/user_signup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -59,7 +59,7 @@
         android:textColor="#000" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password"
+        android:id="@+id/user_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -76,7 +76,7 @@
 
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/phone_no"
+        android:id="@+id/user_signup_phonenumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -92,7 +92,7 @@
         android:textColor="#000" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/nickname"
+        android:id="@+id/user_signup_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

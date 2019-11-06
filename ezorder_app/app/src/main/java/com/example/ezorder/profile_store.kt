@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_profile_store.view.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
+import org.json.JSONObject
 
 class profile_store : Fragment() {
 

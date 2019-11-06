@@ -74,8 +74,8 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <EditText
-                        android:id="@+id/username_input"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -106,8 +106,8 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
-                    <EditText
-                        android:id="@+id/pw_input"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
