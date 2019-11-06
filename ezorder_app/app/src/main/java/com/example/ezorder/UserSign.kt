@@ -40,7 +40,7 @@ class UserSign : AppCompatActivity() {
 
             VolleyService.POSTVolley(this, "user/signup/", params) { testSuccess, response ->
                 if (testSuccess) {
-                    Toast.makeText(this, response, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
 

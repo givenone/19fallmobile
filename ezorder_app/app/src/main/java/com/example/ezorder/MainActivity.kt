@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity() {
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
                 if (testSuccess) {
-                    Toast.makeText(this, response, Toast.LENGTH_LONG).show()
-                    // TODO :: GET TOKEN !
+
+                    VolleyService.token = JSONObject(response).getString("token") // get token
+
                     if(!JSONObject(response).getBoolean("isStore"))
                     {// if user
                         val nextIntent = Intent(this@MainActivity, main_user::class.java)
                         nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
-
                     }
                     else
                     {// if store
