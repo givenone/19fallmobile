@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "https://localhost:8000/"
+    val testUrl = "http://localhost:8000/"
 
     fun GETVolley(context: Context, url : String, token : String, res: (Boolean, String) -> Unit) {
 
@@ -39,10 +39,10 @@ object VolleyService {
         Volley.newRequestQueue(context).add(testRequest)
     }
 
-    fun POSTVolley(context: Context, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
+    fun POSTVolley(context: Context,  url : String, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
 
 
-        val testRequest = object : StringRequest(Method.POST, testUrl , Response.Listener { response ->
+        val testRequest = object : StringRequest(Method.POST, testUrl + url , Response.Listener { response ->
             println("서버 Response 수신: $response")
             res(true, response)
         }, Response.ErrorListener { error ->

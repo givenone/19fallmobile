@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             val params = HashMap<String, String>()
             params["username"] = email.text.toString()
             params["password"] = password.text.toString()
-            VolleyService.POSTVolley(this, params) { testSuccess, response ->
+            VolleyService.POSTVolley(this, "login/", params) { testSuccess, response ->
                 if (testSuccess) {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
                     // TODO :: GET TOKEN !

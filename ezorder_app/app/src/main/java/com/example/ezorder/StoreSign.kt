@@ -34,7 +34,7 @@ class StoreSign : AppCompatActivity() {
             params["name"] = storename.text.toString()
             params["information"] = storeinfo.text.toString()
 
-            VolleyService.POSTVolley(this, params) { testSuccess, response ->
+            VolleyService.POSTVolley(this, "user/", params) { testSuccess, response ->
                 if (testSuccess) {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 

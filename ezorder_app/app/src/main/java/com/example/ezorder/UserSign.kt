@@ -37,7 +37,7 @@ class UserSign : AppCompatActivity() {
             params["nickname"] = nickname.text.toString()
             params["isStore"] = "false"
 
-            VolleyService.POSTVolley(this, params) { testSuccess, response ->
+            VolleyService.POSTVolley(this, "user/", params) { testSuccess, response ->
                 if (testSuccess) {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 
