@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "http://localhost:8000/"
+    val testUrl = "http://172.30.1.7:8000/"
 
     fun GETVolley(context: Context, url : String, token : String, res: (Boolean, String) -> Unit) {
 
@@ -61,6 +61,8 @@ object VolleyService {
             // getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.
             // getBody에서는 요청에 JSON이나 String이 아닌 ByteArray가 필요하므로, 타입을 변경한다.
         }
+
+        Log.d("ERROR", testRequest.body.contentToString())
 
 
         Volley.newRequestQueue(context).add(testRequest)
