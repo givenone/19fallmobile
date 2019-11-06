@@ -14,6 +14,12 @@ class MenuSerializer(serializers.ModelSerializer):
         fields = ('id', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
 
 
+class StoreListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StoreProfile
+        fields = ('id', 'name', 'information')
+
+
 # User 입장에서 보는 Store
 class StoreSerializer(serializers.ModelSerializer):
     contact = serializers.ReadOnlyField(source='user.phone')
