@@ -4,6 +4,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
+from django.contrib.auth.hashers import make_password
+
 from .serializers import UserProfileSerializer, SignUpSerializer
 from Store.serializers import StoreProfileSerializer
 from .models import CustomUser
@@ -24,12 +26,10 @@ class CustomAuthToken(ObtainAuthToken):
 
 class SignUp(APIView):
     def post(self, request):
-        print(request.data)
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-
-            return Response({'isStore': request.data['isStore'], 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
+            return Response({'isStore': user.isStore, 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
         else:
             return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -50,3 +50,22 @@ class UserDetail(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def put(self, request):
+        data = request.data
+        try:
+            user = CustomUser.objects.get(pk=request.user.id)
+        except CustomUser.DoesNotExist:
+            return Response({"message": "does not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        data['username'] = data.get('username', user.username)
+        data['email'] = data.get('email', user.email)
+        raw_password = data.get('password', '')
+        data['password'] = make_password(raw_password) if raw_password != '' else user.password
+        data['isStore'] = user.isStore
+        data['phone'] = data.get('phone', user.phone)
+        serializer = SignUpSerializer(user, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)
