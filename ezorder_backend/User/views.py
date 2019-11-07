@@ -10,7 +10,6 @@ from .serializers import UserProfileSerializer, SignUpSerializer
 from Store.serializers import StoreProfileSerializer
 from .models import CustomUser
 
-
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -23,9 +22,9 @@ class CustomAuthToken(ObtainAuthToken):
             'isStore': user.isStore,
         })
 
-
 class SignUp(APIView):
     def post(self, request):
+        print(request.data)
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
