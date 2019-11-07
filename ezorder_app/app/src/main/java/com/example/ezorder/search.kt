@@ -24,13 +24,10 @@ class search : Fragment() {
 
         VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
-                //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
 
                 val jsonObj: JSONArray = JSONArray(response)
 
-                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("name")
-                view.findViewById<TextView>(R.id.store_phone_number_text).text = "Contact : " + jsonObj.getString("phone")
-                view.findViewById<TextView>(R.id.store_text).text = "Info : " + jsonObj.getString("information")
 
             } else {
                 Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
