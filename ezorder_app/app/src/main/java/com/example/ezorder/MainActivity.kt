@@ -7,9 +7,11 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.ezorder.VolleyService.POSTVolley
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.first_page_app)
@@ -29,16 +31,17 @@ class MainActivity : AppCompatActivity() {
             val params = HashMap<String, String>()
             params["username"] = email.text.toString()
             params["password"] = password.text.toString()
-            VolleyService.POSTVolley(this, "login/", params) { testSuccess, response ->
+
+            VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
                 if (testSuccess) {
-                    Toast.makeText(this, response, Toast.LENGTH_LONG).show()
-                    // TODO :: GET TOKEN !
-                    if(true)
+
+                    VolleyService.token = JSONObject(response).getString("token") // get token
+
+                    if(!JSONObject(response).getBoolean("isStore"))
                     {// if user
                         val nextIntent = Intent(this@MainActivity, main_user::class.java)
                         nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
-
                     }
                     else
                     {// if store

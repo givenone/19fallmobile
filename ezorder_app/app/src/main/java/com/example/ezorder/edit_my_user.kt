@@ -21,4 +21,7 @@ class edit_my_user : Fragment() {
     }
 
 
+    companion object {
+        fun newInstance(): edit_my_user = edit_my_user()
+    }
 }

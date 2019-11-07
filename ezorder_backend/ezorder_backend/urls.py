@@ -24,6 +24,6 @@ urlpatterns = [
     # path('menu/', include('Menu.urls')),
     # path('order/', include('Order.urls')),
     path('user/', include('User.urls')),
-    # path('store/', include('Store.urls')),
+    path('store/', include('Store.urls')),
     path('admin/', admin.site.urls),
 ]

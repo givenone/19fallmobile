@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_profile_store.view.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
@@ -20,9 +21,9 @@ class profile_store : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.fragment_profile_store, container, false)
 
-        VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/", VolleyService.token) { testSuccess, response ->
+        VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "user/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
-                Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
 
                 val jsonObj: JSONObject = JSONObject(response)
 
@@ -33,8 +34,9 @@ class profile_store : Fragment() {
                 val store_name = jsonObj.getString("name")
                 val store_info = jsonObj.getString("information")
 
-                // TODO : Set the Values !
-
+                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("name")
+                view.findViewById<TextView>(R.id.store_phone_number_text).text = "Contact : " + jsonObj.getString("phone")
+                view.findViewById<TextView>(R.id.store_text).text = "Info : " + jsonObj.getString("information")
 
             } else {
                 Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()

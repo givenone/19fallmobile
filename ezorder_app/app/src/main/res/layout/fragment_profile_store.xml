@@ -85,7 +85,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/store_info_text"
+                android:id="@+id/store_phone_number_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Contact: 02-882-3101"

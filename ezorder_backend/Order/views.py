@@ -9,7 +9,6 @@ class OrderList(APIView):
     permission_classes = (permissions.IsAuthenticated, )
 
 
+
 class OrderDetail(APIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner, )
-
-

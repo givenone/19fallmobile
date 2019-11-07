@@ -15,6 +15,7 @@ import org.json.JSONObject
 
 class UserSign : AppCompatActivity() {
 
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_activity_when_sign)
@@ -37,9 +38,9 @@ class UserSign : AppCompatActivity() {
             params["nickname"] = nickname.text.toString()
             params["isStore"] = "false"
 
-            VolleyService.POSTVolley(this, "user/", params) { testSuccess, response ->
+            VolleyService.POSTVolley(this, "user/signup/", params) { testSuccess, response ->
                 if (testSuccess) {
-                    Toast.makeText(this, response, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
 
