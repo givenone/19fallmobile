@@ -3,15 +3,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import com.example.ezorder.VolleyService
-import com.example.ezorder.manage_orders
-import com.example.ezorder.whenorder
-import kotlinx.android.synthetic.main.fragment_search.view.*
 import org.json.JSONArray
-import org.json.JSONObject
 import android.widget.ListView
+import com.example.ezorder.*
 
 
 class search : Fragment() {
@@ -29,7 +24,23 @@ class search : Fragment() {
 
                 val jsonArr: JSONArray = JSONArray(response)
 
-                val Adapter = SearchAdapter(getActivity()!!.getApplicationContext(), jsonArr)
+                val Adapter = SearchAdapter(
+                    getActivity()!!.getApplicationContext(),
+                    jsonArr
+                ) { store_id ->
+
+                    Toast.makeText(
+                        getActivity()!!.getApplicationContext(),
+                        " You Checked :" + " ${store_id}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val transaction = fragmentManager!!.beginTransaction()
+                    transaction.replace(R.id.user_container, whenorder.newInstance(store_id))
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+
+                }
                 listview.adapter = Adapter
 
             } else {

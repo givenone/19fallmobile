@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "http://10.146.180.32:8000/"
+    val testUrl = "http://10.146.180.24:8000/"
 
     fun GETVolley(context: Context, url : String, thetoken : String, res: (Boolean, String) -> Unit) {
 
@@ -69,6 +69,11 @@ object VolleyService {
             Log.d("ERROR", "서버 Response 가져오기 실패: $error")
             res(false, error.toString())
         }) {
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Authorization"] = "Token " + VolleyService.token
+                return params
+            }
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
                 // TODO :: what is needed?

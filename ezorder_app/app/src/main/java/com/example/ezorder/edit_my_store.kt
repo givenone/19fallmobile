@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
@@ -30,19 +31,19 @@ class edit_my_store : Fragment() {
 
                 val jsonObj: JSONObject = JSONObject(response)
 
-                view.findViewById<TextView>(R.id.store_name_edit).text = "store name : " + jsonObj.getString("name")
-                view.findViewById<TextView>(R.id.store_contact_info_edit).text = "Contact : " + jsonObj.getString("phone")
-                view.findViewById<TextView>(R.id.store_information_edit).text = "Info : " + jsonObj.getString("information")
+                view.findViewById<TextView>(R.id.store_name_edit).text = jsonObj.getString("username")
+                view.findViewById<TextView>(R.id.store_contact_info_edit).text = jsonObj.getString("phone")
+                view.findViewById<TextView>(R.id.store_information_edit).text = jsonObj.getString("information")
 
             } else {
                 Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
             }
         }
 
-        view.edit_button.setOnClickListener {
+        view.findViewById<Button>(R.id.store_edit_cfm_button).setOnClickListener {
 
             val params = HashMap<String, String>()
-            params["name"] = view.findViewById<TextView>(R.id.store_name_edit).text.toString()
+            params["username"] = view.findViewById<TextView>(R.id.store_name_edit).text.toString()
             params["phone"] = view.findViewById<TextView>(R.id.store_contact_info_edit).text.toString()
             params["information"] = view.findViewById<TextView>(R.id.store_information_edit).text.toString()
 
