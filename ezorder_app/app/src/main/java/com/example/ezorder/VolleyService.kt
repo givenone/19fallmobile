@@ -58,4 +58,24 @@ object VolleyService {
 
         Volley.newRequestQueue(context).add(testRequest)
     }
+
+    fun PUTVolley(context: Context, url : String, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
+
+
+        val testRequest = object : StringRequest(Method.PUT, testUrl + url , Response.Listener { response ->
+            println("서버 Response 수신: $response")
+            res(true, response)
+        }, Response.ErrorListener { error ->
+            Log.d("ERROR", "서버 Response 가져오기 실패: $error")
+            res(false, error.toString())
+        }) {
+            @Throws(AuthFailureError::class)
+            override fun getParams(): Map<String, String> {
+                // TODO :: what is needed?
+                return parameterList
+            }
+        }
+
+        Volley.newRequestQueue(context).add(testRequest)
+    }
 }

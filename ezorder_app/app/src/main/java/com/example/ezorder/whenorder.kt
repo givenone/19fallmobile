@@ -2,6 +2,7 @@ package com.example.ezorder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,12 @@ class whenorder :  Fragment() {
     }
 
     companion object {
-        fun newInstance(): whenorder = whenorder()
+        fun newInstance(storeId: Int): whenorder {
+            val fragment = whenorder()
+            val args = Bundle()
+            args.putInt("storeId", storeId)
+            fragment.setArguments(args)
+            return fragment
+        }
     }
 }

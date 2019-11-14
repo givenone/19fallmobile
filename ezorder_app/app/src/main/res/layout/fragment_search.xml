@@ -72,13 +72,10 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/user_order_button"
+
+    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="200dp"
-        android:text="Order Now (layout modification needed)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/listview"/>
 
 </RelativeLayout>
