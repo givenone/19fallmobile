@@ -16,7 +16,7 @@ class Menu(models.Model):
     price = models.IntegerField()
     expected_time = models.DurationField()
     take_out_available = models.BooleanField(default=False)
-    option = models.TextField(max_length=500, blank=True)
+    option = models.TextField(max_length=500, blank=True, null=True)
 
 
 '''

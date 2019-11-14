@@ -31,10 +31,10 @@ class SignUpSerializer(serializers.ModelSerializer):
         return user
 
     def update(self, instance, validated_data):
-        instance.username = validated_data['username']
-        instance.email = validated_data['email']
-        instance.password = validated_data['password']
-        instance.phone = validated_data['phone']
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.password = validated_data.get('password', instance.password)
+        instance.phone = validated_data.get('phone', instance.phone)
 
         if not instance.isStore:
             instance.user_profile.nickname = validated_data.get('nickname', instance.user_profile.nickname)

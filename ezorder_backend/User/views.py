@@ -51,19 +51,16 @@ class UserDetail(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        data = request.data
+        # data = request.data
         try:
             user = CustomUser.objects.get(pk=request.user.id)
         except CustomUser.DoesNotExist:
             return Response({"message": "does not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        data['username'] = data.get('username', user.username)
-        data['email'] = data.get('email', user.email)
-        raw_password = data.get('password', '')
-        data['password'] = make_password(raw_password) if raw_password != '' else user.password
-        data['isStore'] = user.isStore
-        data['phone'] = data.get('phone', user.phone)
-        serializer = SignUpSerializer(user, data=data)
+        raw_password = request.data.get('password', '')
+        request.data['password'] = make_password(raw_password) if raw_password != '' else user.password
+        serializer = SignUpSerializer(user, data=request.data, partial=True)
+
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)

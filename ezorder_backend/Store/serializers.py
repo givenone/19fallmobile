@@ -18,10 +18,21 @@ class OptionField(serializers.Field):
 class MenuSerializer(serializers.ModelSerializer):
     # FIXME: 영 못미더움... 나중에 꼭 테스트해보자
     option = OptionField()
+    picture = serializers.ImageField(required=False)
 
     class Meta:
         model = Menu
         fields = ('id', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
+
+    def create(self, validated_data):
+        return Menu.objects.create(picture=validated_data.get('picture', None),
+                                   price=validated_data['price'],
+                                   expected_time=validated_data['expected_time'],
+                                   take_out_available=validated_data['take_out_available'],
+                                   option=validated_data.get('option', None))
+
+    def update(self, instance, validated_data):
+        return
 
 
 class StoreListSerializer(serializers.ModelSerializer):
