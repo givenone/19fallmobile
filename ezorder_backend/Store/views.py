@@ -57,7 +57,9 @@ class MenuList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = MenuSerializer(data=request.data)
+        data = request.data
+        data['store'] = request.user.store_profile
+        serializer = MenuSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
