@@ -16,7 +16,7 @@ class search : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater!!.inflate(com.example.ezorder.R.layout.fragment_search, container, false)
+        val view: View = inflater!!.inflate(com.example.ezorder.R.layout.whenorder, container, false)
         val listview = view.findViewById<ListView>(com.example.ezorder.R.id.listview) as ListView
 
         VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/", VolleyService.token) { testSuccess, response ->
