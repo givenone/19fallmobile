@@ -44,7 +44,7 @@ class MenuSerializer(serializers.ModelSerializer):
 class StoreListSerializer(serializers.ModelSerializer):
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information')
+        fields = ('id', 'name', 'information', 'latitude', 'longitude')
 
 
 # User 입장에서 보는 Store
@@ -54,7 +54,7 @@ class StoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information', 'contact', 'menus')
+        fields = ('id', 'name', 'information', 'contact', 'menus', 'latitude', 'longitude')
 
 
 # Store 주인장 입장에서 보는 Store
@@ -67,4 +67,4 @@ class StoreProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'username', 'email', 'isStore', 'phone', 'name', 'information', 'menus')
+        fields = ('id', 'username', 'email', 'isStore', 'phone', 'name', 'information', 'menus', 'latitude', 'longitude')

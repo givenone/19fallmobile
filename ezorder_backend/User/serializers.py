@@ -27,7 +27,10 @@ class SignUpSerializer(serializers.ModelSerializer):
 
         if validated_data['isStore']:
             user.store_profile = StoreProfile.objects.create(name=validated_data['name'],
-                                                             information=validated_data['information'], user=user)
+                                                             information=validated_data['information'],
+                                                             latitude=validated_data.get('latitude',None),
+                                                             longitude=validated_data.get('longitude',None),
+                                                             user=user)
         elif not validated_data['isStore']:
             user.user_profile = UserProfile.objects.create(nickname=validated_data['nickname'], user=user)
         user.save()
@@ -44,7 +47,9 @@ class SignUpSerializer(serializers.ModelSerializer):
             instance.user_profile.save()
         else:
             instance.store_profile.name = validated_data.get('name', instance.store_profile.name)
-            instance.store_profile.information = validated_data.get('name', instance.store_profile.name)
+            instance.store_profile.information = validated_data.get('information', instance.store_profile.name)
+            instance.store_profile.latitude = validated_data.get('latitude', instance.store_profile.latitude)
+            instance.store_profile.longitude = validated_data.get('longitude', instance.store_profile.longitude)
             instance.store_profile.save()
 
         instance.save()
