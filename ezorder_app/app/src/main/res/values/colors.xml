@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="ez_red_light">#E35D4F</color>
+    <color name="ez_red">#DE3E2D</color>
 </resources>

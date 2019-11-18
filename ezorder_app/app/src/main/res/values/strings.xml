@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ezorder</string>
+    <string name="title_activity_main_user">main_user</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="store_logo">Store Logo</string>
+    <string name="store_name">Store Name</string>
+    <string name="store_location">Store Location</string>
+    <string name="operating_hours">Operating Hours</string>
+    <string name="contact_info">Contact Info.</string>
+    <string name="menu"><![CDATA[<Menu>]]></string>
+    <string name="manage_orders">Manage Orders</string>
+    <string name="my_store">Manage My Store</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_list">Order List</string>
+    <string name="title_manage_my_store">Manage My Store</string>
+    <string name="example_order">kimbap + ramyun set</string>
+    <string name="store_contact_info">Store Contact Information</string>
+    <string name="example_order2">Pork Cutlet set</string>
 </resources>
