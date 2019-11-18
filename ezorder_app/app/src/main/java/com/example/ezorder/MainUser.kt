@@ -6,7 +6,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-class main_user : AppCompatActivity() {
+
+
+abstract class main_user : AppCompatActivity() {
 
     private val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
         when (item.itemId) {
@@ -42,7 +44,6 @@ class main_user : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_user)
         bottomNavigationView.setOnNavigationItemSelectedListener(mlistener);
-
         openFragment(profile.newInstance()) // default fragment : profile !
     }
 }
