@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 
 
 
-abstract class main_user : AppCompatActivity() {
+class MainUser : AppCompatActivity() {
 
     private val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
         when (item.itemId) {

@@ -44,7 +44,7 @@ class UserSign : AppCompatActivity() {
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
 
-                    val nextIntent = Intent(this@UserSign, main_user::class.java)
+                    val nextIntent = Intent(this@UserSign, MainUser::class.java)
                     nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(nextIntent)
 

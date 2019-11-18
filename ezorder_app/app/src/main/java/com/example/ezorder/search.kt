@@ -1,12 +1,26 @@
+import android.Manifest
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import org.json.JSONArray
 import android.widget.ListView
 import com.example.ezorder.*
+import android.content.Context.LOCATION_SERVICE
+import android.content.pm.PackageManager
+import android.location.Location
+import androidx.core.content.ContextCompat.getSystemService
+import android.location.LocationManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.Manifest.permission
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.location.LocationListener
 
 
 class search : Fragment() {
@@ -28,7 +42,6 @@ class search : Fragment() {
                     getActivity()!!.getApplicationContext(),
                     jsonArr
                 ) { store_id ->
-
                     Toast.makeText(
                         getActivity()!!.getApplicationContext(),
                         " You Checked :" + " ${store_id}",
@@ -48,10 +61,52 @@ class search : Fragment() {
             }
         }
 
+        val user_search_button = view.findViewById<ImageButton>(R.id.user_search_button)
+        val lm = context!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        user_search_button.setOnClickListener {
+            if ( ContextCompat.checkSelfPermission(getActivity()!!.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION )
+                != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions( getActivity()!!,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0.1f,MylocationListener())
+            }
+            else{
+                var myloc = MylocationListener()
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0.1f, myloc)
+
+                //val altitude = location.getAltitude()
+
+                Toast.makeText(getActivity()!!.getApplicationContext(),
+                    "${longitude}"+"${latitude}", Toast.LENGTH_SHORT).show()
+            }
+
+        }
         return view
     }
 
     companion object {
         fun newInstance(): search = search()
+    }
+
+    inner class MylocationListener: LocationListener {
+
+        var mylocation : Location?
+
+        constructor():super(){
+            mylocation= Location("me")
+            mylocation!!.longitude
+            mylocation!!.latitude
+        }
+
+        override fun onLocationChanged(location: Location?) {
+            mylocation = location
+        }
+
+        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
+
+        override fun onProviderEnabled(p0: String?) {}
+
+        override fun onProviderDisabled(p0: String?) {}
     }
 }
