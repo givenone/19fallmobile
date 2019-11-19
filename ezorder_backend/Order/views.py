@@ -23,12 +23,12 @@ class OrderList(APIView):
         if not request.user.isStore:
             expire_date = timezone.now() + timezone.timedelta(days=-30)
             Order.objects.filter(user = request.user.user_profile, done=True, created__lt=expire_date).delete()
-            return Order.objects.filter(user = request.user.user_profile)
+            return Order.objects.filter(user=request.user.user_profile)
         else:
-            return Order.objects.filter(store = request.user.store_profile)
+            return Order.objects.filter(store=request.user.store_profile)
 
     def get(self, request):
-        queryset = self.get_queryset()
+        queryset = self.get_queryset(request)
         if not request.user.isStore:
             serializer = UserOrderSerializer(queryset, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -37,17 +37,17 @@ class OrderList(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        data = None
+        data = {}
         data['request'] = request.data['request']
-        menu = request.data['menu']
-        store = Menu.objects.get(pk=menu).store
+        menu = Menu.objects.get(pk=request.data['menu'])
+        store = menu.store
         option = json.dumps(request.data['option'])
         newOrder = Order.objects.create(request=request.data['request'],
-                             done=False,
-                             store=store,
-                             user=request.user,
-                             menu=menu,
-                             option=option)
+                                        done=False,
+                                        store=store,
+                                        user=request.user.user_profile,
+                                        menu=menu,
+                                        option=option)
 
         return Response(UserOrderSerializer(newOrder).data, status=status.HTTP_201_CREATED)
 
