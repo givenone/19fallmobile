@@ -35,7 +35,6 @@ class search : Fragment() {
 
         VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
-
                 val jsonArr: JSONArray = JSONArray(response)
 
                 val Adapter = SearchAdapter(
@@ -47,9 +46,12 @@ class search : Fragment() {
                         " You Checked :" + " ${store_id}",
                         Toast.LENGTH_SHORT
                     ).show()
-
+                    val frag_02 = whenorder()
+                    val bundle = Bundle()
+                    bundle.putInt("store_id",store_id)
+                    frag_02.arguments=bundle
                     val transaction = fragmentManager!!.beginTransaction()
-                    transaction.replace(R.id.user_container, whenorder.newInstance(store_id))
+                    transaction.replace(R.id.user_container, frag_02)
                     transaction.addToBackStack(null)
                     transaction.commit()
 
