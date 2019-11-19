@@ -22,7 +22,7 @@ class MenuSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ('id', 'store', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
+        fields = ('id', 'name', 'store', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
 
     def create(self, validated_data):
         return Menu.objects.create(picture=validated_data.get('picture', None),
@@ -30,15 +30,18 @@ class MenuSerializer(serializers.ModelSerializer):
                                    price=validated_data['price'],
                                    expected_time=validated_data['expected_time'],
                                    take_out_available=validated_data['take_out_available'],
-                                   option=validated_data.get('option', None))
+                                   option=validated_data.get('option', None),
+                                   name=validated_data['name'])
 
     def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
         instance.picture = validated_data.get('picture', instance.picture)
         instance.price = validated_data.get('price', instance.price)
         instance.expected_time = validated_data.get('expected_time', instance.expected_time)
         instance.take_out_available = validated_data.get('take_out_available', instance.take_out_available)
         instance.option = validated_data.get('option', instance.option)
-        return instance.save()
+        instance.save()
+        return instance
 
 
 class StoreListSerializer(serializers.ModelSerializer):

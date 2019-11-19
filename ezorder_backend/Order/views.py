@@ -77,6 +77,4 @@ class OrderDetail(APIView):
         order.done = True
         order.save()
 
-        return Response(data=StoreOrderSerializer(order), status=status.HTTP_200_OK)
-
-
+        return Response(data=StoreOrderSerializer(order).data, status=status.HTTP_200_OK)
