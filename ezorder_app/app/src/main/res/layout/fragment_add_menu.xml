@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_menu">
+
+    <LinearLayout
+        android:id="@+id/add_menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Menu"
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_menu_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Menu Name"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/menu_name_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Menu Price"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/menu_price_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Expected Time"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/menu_expected_time_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="time"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+
+                    <Switch
+                        android:id="@+id/take_out_switch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Take-out"
+                        android:textColor="#969696"
+                        android:textSize="15sp"
+                        android:padding="10dp"
+                        />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/add_options_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_plus"
+                    android:text="Add option"
+                    android:textColor="#969696"
+                    android:background="@android:color/transparent"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:paddingLeft="10dp"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="bottom">
+
+                <Button
+                    android:id="@+id/add_menu_cfm_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ez_red"
+                    android:text="CONFIRM"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
