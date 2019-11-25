@@ -5,8 +5,7 @@ from rest_framework.response import Response
 from  django.utils import timezone
 
 from .serializers import (UserOrderSerializer, StoreOrderSerializer)
-from .models import Order
-from .permissions import IsOwner
+from .models import Order, OrderMenu
 
 from Store.models import Menu
 
@@ -25,6 +24,8 @@ class OrderList(APIView):
             Order.objects.filter(user = request.user.user_profile, done=True, created__lt=expire_date).delete()
             return Order.objects.filter(user=request.user.user_profile)
         else:
+            expire_date = timezone.now() + timezone.timedelta(days=-30)
+            Order.objects.filter(store=request.user.store_profile, done=True, created__lt=expire_date).delete()
             return Order.objects.filter(store=request.user.store_profile)
 
     def get(self, request):
@@ -37,19 +38,29 @@ class OrderList(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        data = {}
-        data['request'] = request.data['request']
-        menu = Menu.objects.get(pk=request.data['menu'])
-        store = menu.store
-        option = json.dumps(request.data['option'])
-        newOrder = Order.objects.create(request=request.data['request'],
-                                        done=False,
-                                        store=store,
-                                        user=request.user.user_profile,
-                                        menu=menu,
-                                        option=option)
+        """
+        :param request: {request : ~, total_price: 15000 menus: [{id:menu_id, quantity:3, option:json}]}
+        :return:
+        """
 
-        return Response(UserOrderSerializer(newOrder).data, status=status.HTTP_201_CREATED)
+        try:
+            store = Menu.objects.get(id=request.data['menus'][0]['id']).store
+            order = Order.objects.create(request=request.data['request'],
+                                         store=store,
+                                         user=request.user.user_profile,
+                                         total_price=request.data['total_price'])
+
+            menus = request.data['menus']
+            for menu in menus:
+                option = menu.get('option', None)
+                OrderMenu.objects.create(order=order,
+                                         menu=Menu.objects.get(id=menu['id']),
+                                         quantity=menu['quantity'],
+                                         option=json.dumps(option))
+
+            return Response(UserOrderSerializer(order).data, status=status.HTTP_201_CREATED)
+        except KeyError:
+            return Response({'message': 'Please Check request field!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class OrderDetail(APIView):
