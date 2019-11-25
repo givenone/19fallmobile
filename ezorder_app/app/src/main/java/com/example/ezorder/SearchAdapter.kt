@@ -1,3 +1,5 @@
+package com.example.ezorder
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,7 @@ import com.example.ezorder.R
 import com.example.ezorder.whenorder
 import org.json.JSONArray
 
-class SearchAdapter (val context: Context, val storelist: JSONArray) : BaseAdapter() {
+class SearchAdapter (val context: Context, val storelist: JSONArray, val itemClick: (Int) -> Unit) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         /* LayoutInflater는 item을 Adapter에서 사용할 View로 부풀려주는(inflate) 역할을 한다. */
@@ -27,10 +29,7 @@ class SearchAdapter (val context: Context, val storelist: JSONArray) : BaseAdapt
 
         button.setOnClickListener {
 
-            val transaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.user_container, whenorder.newInstance(store.getInt("id")))
-            transaction.addToBackStack(null)
-            transaction.commit()
+            itemClick(store.getInt("id"))
 
         }
         return view
