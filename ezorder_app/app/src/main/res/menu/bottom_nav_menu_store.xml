@@ -11,6 +11,10 @@
     <item
         android:id="@+id/navigation_store_profile"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Manage My Store" />
+        android:title="My Store Profile" />
 
+    <item
+        android:id="@+id/navigation_store_menu"
+        android:icon="@android:drawable/ic_menu_find"
+        android:title="Menu"/>
 </menu>

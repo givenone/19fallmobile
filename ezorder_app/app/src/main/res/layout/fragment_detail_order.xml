@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detail_order">
+
+    <LinearLayout
+        android:id="@+id/detail_order_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp">
+
+        <TextView
+            android:id="@+id/detail_order_storename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_order_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_order_title"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/detail_order_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Created : "
+            android:textColor="@android:color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/detail_order_takeout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Takeout : "
+            android:textColor="@android:color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/detail_order_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Requests : "
+            android:textColor="@android:color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/detail_order_estimatedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estimated time left : "
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/detail_order_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="DONE" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/detail_order_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail_order_info"/>
+
+</RelativeLayout>

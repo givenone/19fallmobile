@@ -23,9 +23,9 @@
     </LinearLayout>
 
     <ListView
+        android:id="@+id/store_menu_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/order_listview"
         android:layout_below="@+id/menu_edit_title"
         android:layout_above="@id/add_menu_btn"/>
 
