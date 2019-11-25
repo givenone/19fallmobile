@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import org.json.JSONArray
+import android.widget.ListView
+import com.example.ezorder.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,7 +44,24 @@ class edit_store_menu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_store_menu, container, false)
+        val view: View = inflater!!.inflate(com.example.ezorder.R.layout.fragment_edit_store_menu, container, false)
+        val listview = view.findViewById<ListView>(com.example.ezorder.R.id.store_menu_listview) as ListView
+
+        VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "menu/", VolleyService.token) { testSuccess, response ->
+            if (testSuccess) {
+                val jsonArr: JSONArray = JSONArray(response)
+
+                val Adapter = MenuAdapter(
+                    getActivity()!!.getApplicationContext(),
+                    jsonArr
+                ) { menu_id ->
+
+                }
+            }
+        }
+
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
