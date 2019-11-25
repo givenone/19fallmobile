@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "743296431935",
+    "firebase_url": "https://easyorder-snu.firebaseio.com",
+    "project_id": "easyorder-snu",
+    "storage_bucket": "easyorder-snu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743296431935:android:017022c3bea5368e67058a",
+        "android_client_info": {
+          "package_name": "com.example.ezorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743296431935-h7jrfp4gu20le5irmiitnq2jd5fa0d6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ezorder",
+            "certificate_hash": "4678c3e62b0caae510b1ac29e9470972e112c98b"
+          }
+        },
+        {
+          "client_id": "743296431935-6sooa315cds8o99mpu7jh4p87l9ecb48.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwlQpE08ES029rJEVy7jAzD2DK5uANB9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743296431935-6sooa315cds8o99mpu7jh4p87l9ecb48.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -35,7 +35,6 @@ class profile : Fragment() {
                 view.findViewById<TextView>(R.id.user_nickname_text).text = "nickname : " + jsonObj.getString("nickname")
                 view.findViewById<TextView>(R.id.user_phone_number_text).text = "phone number : " + jsonObj.getString("phone")
 
-
             } else {
                 Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
             }

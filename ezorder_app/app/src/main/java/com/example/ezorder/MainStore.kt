@@ -44,7 +44,6 @@ class MainStore : AppCompatActivity() {
 
         val bottomNavigationView = findViewById(R.id.nav_store) as BottomNavigationView
         bottomNavigationView.setOnNavigationItemSelectedListener(mlistener)
-
         openFragment(profile_store.newInstance()) // default fragment : profile!
     }
 }
