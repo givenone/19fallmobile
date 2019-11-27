@@ -19,5 +19,14 @@
             android:textColor="@color/ez_red"
             android:textSize="26sp" />
 
+        <TextView
+            android:id="@+id/text_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
     </LinearLayout>
 </RelativeLayout>

@@ -64,27 +64,37 @@ class search : Fragment() {
         }
 
         val user_search_button = view.findViewById<ImageButton>(R.id.user_search_button)
-        val lm = context!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val lm = context!!.getSystemService(LOCATION_SERVICE) as LocationManager
+
 
         user_search_button.setOnClickListener {
             if ( ContextCompat.checkSelfPermission(getActivity()!!.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION )
                 != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions( getActivity()!!,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0.1f,MylocationListener())
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
             }
-            else{
-                var myloc = MylocationListener()
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0.1f, myloc)
 
-                //val altitude = location.getAltitude()
-
+            try{
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+            }
+            catch (ex : SecurityException) {
                 Toast.makeText(getActivity()!!.getApplicationContext(),
-                    "${longitude}"+"${latitude}", Toast.LENGTH_SHORT).show()
+                    ex.toString(), Toast.LENGTH_SHORT).show()
             }
+
 
         }
         return view
+    }
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            Toast.makeText(getActivity()!!.getApplicationContext(),
+                "longitude : ${location.longitude} + langitude : ${location.latitude} ", Toast.LENGTH_SHORT).show()
+        }
+        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+        override fun onProviderEnabled(provider: String) {}
+        override fun onProviderDisabled(provider: String) {}
     }
 
     companion object {

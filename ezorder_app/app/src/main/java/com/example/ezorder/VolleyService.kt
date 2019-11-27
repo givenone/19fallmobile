@@ -83,4 +83,27 @@ object VolleyService {
 
         Volley.newRequestQueue(context).add(testRequest)
     }
+
+    fun DELETEVolley(context: Context, url : String, res: (Boolean, String) -> Unit) {
+
+
+        val testRequest = object : StringRequest(Method.DELETE, testUrl + url , Response.Listener { response ->
+            println("서버 Response 수신: $response")
+            res(true, response)
+        }, Response.ErrorListener { error ->
+            Log.d("ERROR", "서버 Response 가져오기 실패: $error")
+            res(false, error.toString())
+        }) {
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Authorization"] = "Token " + VolleyService.token
+                return params
+            }
+            // getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.
+            // getBody에서는 요청에 JSON이나 String이 아닌 ByteArray가 필요하므로, 타입을 변경한다.
+        }
+
+
+        Volley.newRequestQueue(context).add(testRequest)
+    }
 }

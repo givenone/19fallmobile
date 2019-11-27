@@ -8,28 +8,21 @@
     android:orientation="vertical">
 
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal" >-->
-
-<!--        <RadioButton-->
-<!--            android:id="@+id/radio0"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:checked="true" />-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/ic_shape_store"/>-->
-<!--    </LinearLayout>-->
-
 
     <RadioGroup
         android:id="@+id/SU"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RadioButton
+            android:id="@+id/SU_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"  />
+        <RadioButton
+            android:id="@+id/SU_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -48,82 +41,8 @@
                 android:textColor="@android:color/white"
                 android:textSize="25sp" />
 
-            <!--        DECIDE ON LOGO-->
-            <!--        <ImageView-->
-            <!--            android:layout_width="125dp"-->
-            <!--            android:layout_height="125dp"-->
-            <!--            android:layout_marginLeft="35dp"-->
-            <!--            android:layout_marginTop="70dp"-->
-            <!--            android:backgroundTint="@android:color/black"-->
-            <!--            android:src="@drawable/logo_red" />-->
 
         </FrameLayout>
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="110dp"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:paddingTop="15dp">-->
-
-<!--            -->
-<!--            -->
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    app:srcCompat="@drawable/user_black" />-->
-
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    app:srcCompat="@drawable/store_black" />-->
-
-<!--            </LinearLayout>-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="110dp"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
-
-
-
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
-
-
-<!--            </LinearLayout>-->
-
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -131,11 +50,7 @@
             android:orientation="horizontal"
             android:layout_margin="20dp">
 
-            <RadioButton
-                android:id="@+id/SU_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"  />
+
             <!--                android:text="USER" -->
 
 
@@ -159,11 +74,7 @@
             android:orientation="horizontal"
             android:layout_margin="20dp">
 
-            <RadioButton
-                android:id="@+id/SU_store"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp" />
+
             <!--            android:text="STORE"-->
 
             <ImageView

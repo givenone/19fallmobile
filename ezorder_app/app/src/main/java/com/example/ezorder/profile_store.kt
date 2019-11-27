@@ -20,19 +20,14 @@ class profile_store : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.fragment_profile_store, container, false)
-
+        var id : Int = -1
         VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "user/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
                 //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
 
                 val jsonObj: JSONObject = JSONObject(response)
 
-                val id = jsonObj.getString("id")
-                val username = jsonObj.getString("username")
-                val email = jsonObj.getString("email")
-                val phone = jsonObj.getString("phone")
-                val store_name = jsonObj.getString("name")
-                val store_info = jsonObj.getString("information")
+                id = jsonObj.getInt("id")
 
                 view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("name")
                 view.findViewById<TextView>(R.id.store_phone_number_text).text = "Contact : " + jsonObj.getString("phone")
@@ -46,6 +41,13 @@ class profile_store : Fragment() {
         view.edit_button.setOnClickListener {
             val transaction = fragmentManager!!.beginTransaction()
             transaction.replace(R.id.store_container, edit_my_store.newInstance())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
+        view.edit_menu_button.setOnClickListener {
+            val transaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.store_container, EditMenu.newInstance(id))
             transaction.addToBackStack(null)
             transaction.commit()
         }
