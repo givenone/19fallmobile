@@ -18,16 +18,33 @@ class OptionField(serializers.Field):
 class MenuSerializer(serializers.ModelSerializer):
     # FIXME: 영 못미더움... 나중에 꼭 테스트해보자
     option = OptionField()
+    picture = serializers.ImageField(required=False)
 
     class Meta:
         model = Menu
-        fields = ('id', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
+        fields = ('id', 'store', 'picture', 'price', 'expected_time', 'take_out_available', 'option')
+
+    def create(self, validated_data):
+        return Menu.objects.create(picture=validated_data.get('picture', None),
+                                   store=validated_data['store'],
+                                   price=validated_data['price'],
+                                   expected_time=validated_data['expected_time'],
+                                   take_out_available=validated_data['take_out_available'],
+                                   option=validated_data.get('option', None))
+
+    def update(self, instance, validated_data):
+        instance.picture = validated_data.get('picture', instance.picture)
+        instance.price = validated_data.get('price', instance.price)
+        instance.expected_time = validated_data.get('expected_time', instance.expected_time)
+        instance.take_out_available = validated_data.get('take_out_available', instance.take_out_available)
+        instance.option = validated_data.get('option', instance.option)
+        return instance.save()
 
 
 class StoreListSerializer(serializers.ModelSerializer):
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information')
+        fields = ('id', 'name', 'information', 'latitude', 'longitude')
 
 
 # User 입장에서 보는 Store
@@ -37,7 +54,7 @@ class StoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'name', 'information', 'contact', 'menus')
+        fields = ('id', 'name', 'information', 'contact', 'menus', 'latitude', 'longitude')
 
 
 # Store 주인장 입장에서 보는 Store
@@ -50,4 +67,4 @@ class StoreProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StoreProfile
-        fields = ('id', 'username', 'email', 'isStore', 'phone', 'name', 'information', 'menus')
+        fields = ('id', 'username', 'email', 'isStore', 'phone', 'name', 'information', 'menus', 'latitude', 'longitude')

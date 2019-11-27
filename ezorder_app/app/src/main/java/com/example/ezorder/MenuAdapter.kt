@@ -1,14 +1,10 @@
 package com.example.ezorder
 
 import android.content.Context
-import android.os.Bundle
+import android.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import org.json.JSONArray
 
 class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: Int, val itemClick: (Int) -> Unit) : BaseAdapter() {
@@ -48,6 +44,7 @@ class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: 
 
     override fun getItem(position: Int): Any {
         return storelist.getJSONObject(position)
+
     }
 
     override fun getItemId(position: Int): Long {
@@ -55,7 +52,9 @@ class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: 
     }
 
     override fun getCount(): Int {
+
         return storelist.length()
+
     }
 
 }
