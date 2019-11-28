@@ -15,6 +15,7 @@
 
     <item
         android:id="@+id/navigation_store_menu"
-        android:icon="@android:drawable/ic_menu_find"
-        android:title="Menu"/>
+        android:icon="@android:drawable/ic_input_get"
+        android:title="Menu" />
+
 </menu>

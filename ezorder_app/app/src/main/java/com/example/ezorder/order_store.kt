@@ -10,18 +10,18 @@ import android.view.ViewGroup
 /**
  * A simple [Fragment] subclass.
  */
-class manage_orders : Fragment() {
+class order_store : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage_orders, container, false)
+        return inflater.inflate(R.layout.fragment_order_store, container, false)
     }
 
     companion object {
-        fun newInstance(): manage_orders = manage_orders()
+        fun newInstance(): order_store = order_store()
     }
 
 

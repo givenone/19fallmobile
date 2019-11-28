@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 
 
 class MainStore : AppCompatActivity() {
@@ -13,7 +12,7 @@ class MainStore : AppCompatActivity() {
     val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
             when (item.getItemId()) {
                 R.id.navigation_store_order -> {// TODO :: navigation in bottomnavigationView (Unsure)
-                    val fragmentA = manage_orders.newInstance()
+                    val fragmentA = order_store.newInstance()
                     openFragment(fragmentA)
                     return@OnNavigationItemSelectedListener true
                 }
