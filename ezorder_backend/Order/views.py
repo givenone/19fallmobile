@@ -44,7 +44,7 @@ class OrderList(APIView):
         """
 
         try:
-            store = Menu.objects.get(id=request.data['menus'][0]['id']).store
+            store = Menu.objects.get(id=int(request.data['menus'][0]['id'])).store
             order = Order.objects.create(request=request.data['request'],
                                          store=store,
                                          user=request.user.user_profile,
@@ -54,7 +54,7 @@ class OrderList(APIView):
             for menu in menus:
                 option = menu.get('option', None)
                 OrderMenu.objects.create(order=order,
-                                         menu=Menu.objects.get(id=menu['id']),
+                                         menu=Menu.objects.get(id=int(menu['id'])),
                                          quantity=menu['quantity'],
                                          option=json.dumps(option))
 
