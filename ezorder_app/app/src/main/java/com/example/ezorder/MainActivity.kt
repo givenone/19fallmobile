@@ -92,12 +92,12 @@ class MainActivity : AppCompatActivity() {
                         nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
                     }
-                    else
-                    {// if store
-                        val nextIntent = Intent(this@MainActivity, MainStore::class.java)
-                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
-                        startActivity(nextIntent)
-                    }
+//                    else
+//                    {// if store
+//                        val nextIntent = Intent(this@MainActivity, MainStore::class.java)
+//                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+//                        startActivity(nextIntent)
+//                    }
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
                 }

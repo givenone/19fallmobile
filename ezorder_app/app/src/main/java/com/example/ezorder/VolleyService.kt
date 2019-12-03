@@ -4,7 +4,9 @@ import android.content.Context
 import android.provider.Settings.Global.getString
 import android.util.Log
 import com.android.volley.AuthFailureError
+import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
@@ -13,7 +15,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "http://10.146.180.81:8000/"
+    val testUrl = "http://192.168.56.1:8000/"
 
     fun GETVolley(context: Context, url : String, thetoken : String, res: (Boolean, String) -> Unit) {
 
@@ -54,10 +56,34 @@ object VolleyService {
             // getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.
             // getBody에서는 요청에 JSON이나 String이 아닌 ByteArray가 필요하므로, 타입을 변경한다.
         }
-
-
         Volley.newRequestQueue(context).add(testRequest)
     }
+
+    fun DATA_POSTVolley(context: Context, url : String, parameterList : JSONObject, res: (Boolean, String) -> Unit) {
+
+
+        val testRequest = object : JsonObjectRequest(Request.Method.POST, testUrl+url,parameterList,Response.Listener { response ->
+            println("서버 Response 수신: $response")
+            res(true, response.toString())
+        }, Response.ErrorListener { error ->
+            Log.d("ERROR", "서버 Response 가져오기 실패: $error")
+            res(false, error.toString())
+        }) {
+            override fun getHeaders(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["Authorization"] = "Token " + VolleyService.token
+                return params
+            }
+
+            override fun getParams(): MutableMap<String, String> {
+                return super.getParams()
+            }
+            // getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.
+            // getBody에서는 요청에 JSON이나 String이 아닌 ByteArray가 필요하므로, 타입을 변경한다.
+        }
+        Volley.newRequestQueue(context).add(testRequest)
+    }
+
 
     fun PUTVolley(context: Context, url : String, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
 
