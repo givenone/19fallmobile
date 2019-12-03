@@ -22,11 +22,6 @@ class MainStore : AppCompatActivity() {
                     openFragment(fragmentB)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigation_store_menu -> {
-                    val fragmentC = edit_store_menu.newInstance()
-                    openFragment(fragmentC)
-                    return@OnNavigationItemSelectedListener true
-                }
             }
         return@OnNavigationItemSelectedListener false
     }

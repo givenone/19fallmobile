@@ -12,16 +12,16 @@ class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         /* LayoutInflater는 item을 Adapter에서 사용할 View로 부풀려주는(inflate) 역할을 한다. */
 
-        val view: View = LayoutInflater.from(context).inflate(R.layout.menu_layout, null)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.listview_edit_store_menu, null)
 
         val menu_name = view.findViewById<TextView>(R.id.menu_name_text)
-        val price = view.findViewById<TextView>(R.id.price_text)
+        //val price = view.findViewById<TextView>(R.id.price_text)
         val edit_button = view.findViewById<Button>(R.id.menu_edit_button)
         val delete_button = view.findViewById<Button>(R.id.menu_delete_button)
 
         val store = storelist.getJSONObject(position)
         menu_name.text = store.getString("name")
-        price.text = store.getString("price")
+        //price.text = store.getString("price")
 
         edit_button.setOnClickListener {
             //TODO :itemClick(store.getInt("id"))
