@@ -25,6 +25,7 @@ import android.location.LocationListener
 
 class search : Fragment() {
 
+    @ExperimentalStdlibApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,11 +42,6 @@ class search : Fragment() {
                     getActivity()!!.getApplicationContext(),
                     jsonArr
                 ) { store_id ->
-                    Toast.makeText(
-                        getActivity()!!.getApplicationContext(),
-                        " You Checked :" + " ${store_id}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     val frag_02 = whenorder()
                     val bundle = Bundle()
                     bundle.putInt("store_id",store_id)

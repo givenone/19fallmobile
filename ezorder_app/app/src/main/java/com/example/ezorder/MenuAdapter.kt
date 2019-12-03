@@ -58,3 +58,4 @@ class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: 
     }
 
 }
+

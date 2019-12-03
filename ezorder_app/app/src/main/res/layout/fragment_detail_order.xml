@@ -16,7 +16,7 @@
             android:id="@+id/detail_order_storename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Store Name"
+            android:text="FFFFFF"
             android:textAlignment="center"
             android:textColor="@color/ez_red"
             android:textSize="26sp" />
