@@ -58,16 +58,35 @@ class MenuList(APIView):
 
     def post(self, request):
         data = request.data
-        data['store'] = request.user.store_profile
+        data['store'] = request.user.store_profile.id
+        print(data)
         serializer = MenuSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class MenuDetail(RetrieveUpdateDestroyAPIView):
+class MenuDetail(APIView):
     permission_classes = (permissions.IsAuthenticated, )
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+
+    def get_object(self, pk):
+        try:
+            return Menu.objects.get(pk=pk)
+        except Menu.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk):
+        menu = self.get_object(pk)
+        serializer = MenuSerializer(menu, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        menu = self.get_object(pk)
+        menu.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
