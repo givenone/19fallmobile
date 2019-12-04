@@ -14,13 +14,13 @@ class MenuAdapter (val context: Context, val storelist: JSONArray, val storeid: 
 
         val view: View = LayoutInflater.from(context).inflate(R.layout.listview_edit_store_menu, null)
 
-        val menu_name = view.findViewById<TextView>(R.id.menu_name_text)
+        //val menu_name = view.findViewById<TextView>(R.id.menu_name_text)
         //val price = view.findViewById<TextView>(R.id.price_text)
         val edit_button = view.findViewById<Button>(R.id.menu_edit_button)
         val delete_button = view.findViewById<Button>(R.id.menu_delete_button)
 
         val store = storelist.getJSONObject(position)
-        menu_name.text = store.getString("name")
+        //menu_name.text = store.getString("name")
         //price.text = store.getString("price")
 
         edit_button.setOnClickListener {
