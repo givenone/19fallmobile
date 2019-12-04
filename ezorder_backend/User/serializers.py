@@ -24,7 +24,6 @@ class SignUpSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create(username=validated_data['username'], email=validated_data['email'],
                                          password=make_password(validated_data['password']),
                                          isStore=validated_data['isStore'], phone=validated_data['phone'])
-
         if validated_data['isStore']:
             user.store_profile = StoreProfile.objects.create(name=validated_data['name'],
                                                              information=validated_data['information'],

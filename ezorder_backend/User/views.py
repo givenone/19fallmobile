@@ -24,8 +24,8 @@ class CustomAuthToken(ObtainAuthToken):
 
 class SignUp(APIView):
     def post(self, request):
-        print(request.data)
         serializer = SignUpSerializer(data=request.data)
+
         if serializer.is_valid():
             user = serializer.save()
             return Response({'isStore': user.isStore, 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
