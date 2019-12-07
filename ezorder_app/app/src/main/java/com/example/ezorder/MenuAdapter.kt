@@ -20,8 +20,8 @@ class MenuAdapter (val context: Context, val menulist: JSONArray, val storeid: I
         val expected_time = view.findViewById<TextView>(R.id.listview_storemenu_expectedTime)
         val option = view.findViewById<TextView>(R.id.listview_storemenu_options)
 
-        val edit_button = view.findViewById<Button>(R.id.menu_edit_button)
-        val delete_button = view.findViewById<Button>(R.id.menu_delete_button)
+        val edit_button = view.findViewById<ImageButton>(R.id.menu_edit_button)
+        val delete_button = view.findViewById<ImageButton>(R.id.menu_delete_button)
 
         val menu = menulist.getJSONObject(position)
         var option_text = ""
@@ -31,7 +31,7 @@ class MenuAdapter (val context: Context, val menulist: JSONArray, val storeid: I
         expected_time.text = menu.getString("expected_time")
         val op = menu.getJSONArray("option")
 
-        for(i in 0 until menu.length())
+        for(i in 0 until op.length())
         {
             val t = op.getJSONObject(i)
             option_text += "{<<${t.getString("text")}>>\n${t.getString("choice")}\n"
@@ -40,10 +40,11 @@ class MenuAdapter (val context: Context, val menulist: JSONArray, val storeid: I
 
         edit_button.setOnClickListener {
             //TODO :itemClick(store.getInt("id")) :: will use wookje's work.
+            itemClick(menu.getInt("id"))
         }
         delete_button.setOnClickListener {
             VolleyService.DELETEVolley(
-                context, "store/{$storeid}/{${menu.getString("id")}") { testSuccess, response ->
+                context, "menu/${menu.getString("id")}/") { testSuccess, response ->
                 if (testSuccess) {
                     itemClick(-1)
                 } else {

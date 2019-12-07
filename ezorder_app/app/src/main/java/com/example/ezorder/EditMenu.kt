@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -20,15 +21,18 @@ class EditMenu : Fragment() {
     ): View? {
 
         val view: View = inflater!!.inflate(R.layout.fragment_edit_store_menu, container, false)
-
-        val storeid = arguments!!.getInt("storeID")
-        VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/{$storeid}/", VolleyService.token) { testSuccess, response ->
+        val listview = view.findViewById<ListView>(com.example.ezorder.R.id.store_menu_listview) as ListView
+        val storeid = arguments!!.getInt("storeId")
+        VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store/"+storeid+"/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
+                //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
                 val jsonArr: JSONArray = JSONObject(response).getJSONArray("menus")
                 val Adapter = MenuAdapter(getActivity()!!.getApplicationContext(), jsonArr, storeid) { store_id ->
                     if (store_id == -1)
                     {
                         //TODO : Reload Required (Deleted)
+                        fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+
                     }
                     else if (store_id > 0)
                     {

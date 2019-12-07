@@ -31,7 +31,8 @@ class edit_my_store : Fragment() {
 
                 val jsonObj: JSONObject = JSONObject(response)
 
-                view.findViewById<TextView>(R.id.store_name_edit).text = jsonObj.getString("username")
+                view.findViewById<TextView>(R.id.store_username_edit).text = jsonObj.getString("username")
+                view.findViewById<TextView>(R.id.store_email_edit).text = jsonObj.getString("email")
                 view.findViewById<TextView>(R.id.store_contact_info_edit).text = jsonObj.getString("phone")
                 view.findViewById<TextView>(R.id.store_information_edit).text = jsonObj.getString("information")
 

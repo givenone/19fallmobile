@@ -41,14 +41,6 @@ class StoreSign : AppCompatActivity() {
             params["name"] = storename.text.toString()
             params["information"] = storeinfo.text.toString()
 
-            val param = JSONObject()
-            params.put("username",id.text.toString())
-            params.put("email",email.text.toString())
-            params.put("password",password.text.toString())
-            params.put("isStore","true")
-            params.put("phone",phonenumber.text.toString())
-            params.put("name",storename.text.toString())
-            params.put("information",storeinfo.text.toString())
 
             // Firebase ID
             FirebaseInstanceId.getInstance().instanceId

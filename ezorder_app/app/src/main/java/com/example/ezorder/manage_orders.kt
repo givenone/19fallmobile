@@ -30,7 +30,8 @@ class manage_orders : Fragment(){
             ) { flag, order_id ->
                     if(flag == 0) // confirm order
                     {
-                        VolleyService.PUTVolley(getActivity()!!.getApplicationContext(), "order/{$order_id}/", null){testSuccess, response ->
+                        val params = HashMap<String, String>()
+                        VolleyService.PUTVolley(getActivity()!!.getApplicationContext(), "order/$order_id/", params){testSuccess, response ->
                             if(testSuccess){
                                 //reload fragment
                                 fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
@@ -49,7 +50,7 @@ class manage_orders : Fragment(){
                         bundle.putInt("order_id",order_id)
                         frag_03.arguments=bundle
                         val transaction = fragmentManager!!.beginTransaction()
-                        transaction.replace(R.id.user_container,frag_03)
+                        transaction.replace(R.id.store_container,frag_03)
                         transaction.addToBackStack(null)
                         transaction.commit()
                     }
@@ -68,6 +69,6 @@ class manage_orders : Fragment(){
 }
 
 companion object {
-    fun newInstance(): order = order()
+    fun newInstance(): manage_orders = manage_orders()
     }
 }

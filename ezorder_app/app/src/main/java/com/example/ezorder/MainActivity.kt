@@ -15,8 +15,10 @@ import org.json.JSONObject
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.iid.FirebaseInstanceId
 
 
 class MainActivity : AppCompatActivity() {
@@ -80,6 +82,19 @@ class MainActivity : AppCompatActivity() {
             val params = HashMap<String, String>()
             params["username"] = email.text.toString()
             params["password"] = password.text.toString()
+            // Firebase ID
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+                    params.put("token", token!!)
+                    // Log and toast
+                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                })
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
                 if (testSuccess) {

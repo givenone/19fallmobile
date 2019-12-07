@@ -29,7 +29,7 @@ class profile_store : Fragment() {
 
                 id = jsonObj.getInt("id")
 
-                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("name")
+                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("username")
                 view.findViewById<TextView>(R.id.store_email_text).text = "store name : " + jsonObj.getString("email")
                 view.findViewById<TextView>(R.id.store_phone_number_text).text = "Contact : " + jsonObj.getString("phone")
                 view.findViewById<TextView>(R.id.store_text).text = "Info : " + jsonObj.getString("information")

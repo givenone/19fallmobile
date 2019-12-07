@@ -35,11 +35,13 @@ class SelectSU : AppCompatActivity() {
                 if(id == R.id.SU_store)
                 {
                     val nextIntent = Intent(this@SelectSU, StoreSign::class.java)
+                    nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(nextIntent)
                 }
                 else if(id == R.id.SU_user)
                 {
                     val nextIntent = Intent(this@SelectSU, UserSign::class.java)
+                    nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(nextIntent)
                 }
             }else{
