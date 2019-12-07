@@ -108,7 +108,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-
                 android:background="@drawable/rounded"
                 android:gravity="center"
                 android:padding="10dp"
@@ -123,12 +122,12 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
 
-                android:background="@drawable/rounded"
+                android:background="@drawable/round_corner_2"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="EDIT MENU"
                 android:textAlignment="center"
-                android:textColor="@color/ez_red_light" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </ScrollView>
 

@@ -8,8 +8,7 @@
         android:id="@+id/menu_edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp">
+        android:layout_marginTop="18dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -19,6 +18,7 @@
             android:textColor="@color/ez_red"
             android:textSize="26sp" />
 
+        //idk what this is
         <TextView
             android:id="@+id/text_dashboard"
             android:layout_width="match_parent"
