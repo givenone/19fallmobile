@@ -22,6 +22,8 @@ class StoreSign : AppCompatActivity() {
         setContentView(R.layout.store_activity_when_sign)
 
         val signupButton = findViewById<Button>(R.id.store_signup_button)
+        val longitude=intent.getDoubleExtra("longitude", 122.084)
+        val latitude=intent.getDoubleExtra("latitude", 37.422)
 
         signupButton.setOnClickListener {
 
@@ -40,6 +42,8 @@ class StoreSign : AppCompatActivity() {
             params["phone"] = phonenumber.text.toString()
             params["name"] = storename.text.toString()
             params["information"] = storeinfo.text.toString()
+            params["longitude"] = longitude.toString()
+            params["latitude"] = latitude.toString()
 
 
             // Firebase ID

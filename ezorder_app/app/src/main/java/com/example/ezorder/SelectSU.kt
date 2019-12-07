@@ -34,14 +34,14 @@ class SelectSU : AppCompatActivity() {
                 // Get the instance of radio button using id
                 if(id == R.id.SU_store)
                 {
-                    val nextIntent = Intent(this@SelectSU, StoreSign::class.java)
-                    nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    val nextIntent = Intent(this@SelectSU, store_location::class.java)
+
                     startActivity(nextIntent)
                 }
                 else if(id == R.id.SU_user)
                 {
                     val nextIntent = Intent(this@SelectSU, UserSign::class.java)
-                    nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+
                     startActivity(nextIntent)
                 }
             }else{
