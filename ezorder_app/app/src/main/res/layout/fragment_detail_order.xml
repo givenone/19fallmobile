@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_order_title"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:background="@drawable/rounded"
         android:orientation="vertical"
         android:padding="20dp">
@@ -68,7 +68,6 @@
             android:id="@+id/detail_order_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="DONE" />
 
     </LinearLayout>
