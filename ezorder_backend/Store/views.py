@@ -97,3 +97,4 @@ class MenuDetail(APIView):
         menu = self.get_object(pk)
         menu.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
