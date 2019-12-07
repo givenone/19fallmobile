@@ -15,12 +15,15 @@ import org.json.JSONObject
 /**
  * A simple [Fragment] subclass.
  */
+
+//when user click detail in order List
 class detail_order : Fragment() {
     @ExperimentalStdlibApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //getting argument from order
         var arguid=-1
         if(arguments!!.getInt("order_id")!=null){
             arguid = arguments!!.getInt("order_id")

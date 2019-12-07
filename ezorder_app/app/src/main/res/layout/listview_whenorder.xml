@@ -37,7 +37,7 @@
         <TextView
             android:id="@+id/listview_whenorder_takeout"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="8dp"
             android:layout_weight="60"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
@@ -48,7 +48,7 @@
         <TextView
             android:id="@+id/listview_whenorder_expectedTime"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="8dp"
             android:layout_weight="60"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
@@ -56,16 +56,6 @@
             android:textColor="#33aabb"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/listview_whenorder_menuOption"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_weight="60"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="Option"
-            android:textColor="#33aabb"
-            android:textStyle="bold" />
 
         <!--        <com.google.android.material.textfield.TextInputEditText-->
         <!--            android:id="@+id/listview_whenorder_optionselect"-->
@@ -96,7 +86,7 @@
     <ImageView
         android:id="@+id/listview_whenorder_menuimage"
         android:layout_width="wrap_content"
-        android:layout_height="115dp"
+        android:layout_height="160dp"
         android:layout_weight="1"
         tools:srcCompat="@tools:sample/avatars" />
 
