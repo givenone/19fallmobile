@@ -5,10 +5,13 @@ import com.example.ezorder.R
 import com.example.ezorder.VolleyService
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.iid.FirebaseInstanceId
 import org.json.JSONObject
 
 class StoreSign : AppCompatActivity() {
@@ -46,6 +49,21 @@ class StoreSign : AppCompatActivity() {
             params.put("phone",phonenumber.text.toString())
             params.put("name",storename.text.toString())
             params.put("information",storeinfo.text.toString())
+
+            // Firebase ID
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+                    params.put("token", token!!)
+                    // Log and toast
+                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                })
+
             VolleyService.POSTVolley(this, "user/signup/", params) { testSuccess, response ->
                 if (testSuccess) {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
