@@ -1,7 +1,6 @@
 from rest_framework import (permissions, status)
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from .serializers import StoreSerializer, StoreListSerializer, MenuSerializer
 from .models import StoreProfile, Menu
 
@@ -77,6 +76,14 @@ class MenuDetail(APIView):
         except Menu.DoesNotExist:
             raise Http404
 
+    def get(self, request, pk):
+        menu = self.get_object(pk)
+        serializer = MenuSerializer(menu, partial=True)
+        if serializer.is_valid():
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'What?!'}, status=status.HTTP_400_BAD_REQUEST)
+
     def put(self, request, pk):
         menu = self.get_object(pk)
         serializer = MenuSerializer(menu, data=request.data, partial=True)
@@ -90,3 +97,4 @@ class MenuDetail(APIView):
         menu = self.get_object(pk)
         menu.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

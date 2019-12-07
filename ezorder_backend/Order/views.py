@@ -11,6 +11,8 @@ from Store.models import Menu
 
 from django.http import Http404
 
+from Order.fcm import send_fcm_notification
+
 import json
 
 
@@ -87,5 +89,6 @@ class OrderDetail(APIView):
         order = self.get_object(pk)
         order.done = True
         order.save()
+        send_fcm_notification(order.user.user.token, 'Order done!', f'Your order from {order.store.name} has been done.')
 
         return Response(data=StoreOrderSerializer(order).data, status=status.HTTP_200_OK)
