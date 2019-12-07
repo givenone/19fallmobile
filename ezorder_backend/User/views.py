@@ -14,8 +14,10 @@ class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)        
         user = serializer.validated_data['user']
+        user.token = request.data['token']
+        user.save()
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
@@ -24,8 +26,8 @@ class CustomAuthToken(ObtainAuthToken):
 
 class SignUp(APIView):
     def post(self, request):
-        print(request.data)
-        serializer = SignUpSerializer(data=request.data)
+        serializer = SignUpSerializer(data=request.data, partial=True)
+
         if serializer.is_valid():
             user = serializer.save()
             return Response({'isStore': user.isStore, 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
@@ -74,6 +76,6 @@ class UserDetail(APIView):
         serializer = SignUpSerializer(user, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)

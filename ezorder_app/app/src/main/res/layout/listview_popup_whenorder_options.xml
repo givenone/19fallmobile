@@ -30,6 +30,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 

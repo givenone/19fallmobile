@@ -20,9 +20,9 @@ from rest_framework.authtoken import views
 
 urlpatterns = [
     # TODO: url 만들면 나중에 주석 지우기
-    # menu가 필요할까?
-    # path('order/', include('Order.urls')),
+    path('order/', include('Order.urls')),
     path('user/', include('User.urls')),
-    path('store/', include('Store.urls')),
+    path('menu/', include('Store.urls_menu')),
+    path('store/', include('Store.urls_store')),
     path('admin/', admin.site.urls),
 ]

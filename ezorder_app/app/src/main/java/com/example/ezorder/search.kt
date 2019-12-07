@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.Manifest.permission
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Intent
 import android.location.LocationListener
 
 
@@ -65,14 +66,21 @@ class search : Fragment() {
 
         user_search_button.setOnClickListener {
             if ( ContextCompat.checkSelfPermission(getActivity()!!.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION )
-                != PackageManager.PERMISSION_GRANTED ) {
+                != PackageManager.PERMISSION_GRANTED )
+            {
                 ActivityCompat.requestPermissions( getActivity()!!,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
             }
 
             try{
+                ActivityCompat.requestPermissions( getActivity()!!,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+                val transaction = fragmentManager!!.beginTransaction()
+
+                val nextIntent = Intent(activity, GMap::class.java)
+                startActivity(nextIntent)
             }
             catch (ex : SecurityException) {
                 Toast.makeText(getActivity()!!.getApplicationContext(),
@@ -85,8 +93,6 @@ class search : Fragment() {
     }
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            Toast.makeText(getActivity()!!.getApplicationContext(),
-                "longitude : ${location.longitude} + langitude : ${location.latitude} ", Toast.LENGTH_SHORT).show()
         }
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Set Your Store Location"
+        android:padding="10dp"
+        android:id="@+id/store_location_text"/>
+    <Button
+        android:id="@+id/map_store_search_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SEARCH" />
+    <EditText
+        android:id="@+id/store_location_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the Address." />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map_store_location"
+        />
+
+    <Button
+        android:id="@+id/map_store_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NEXT" />
+</LinearLayout>
