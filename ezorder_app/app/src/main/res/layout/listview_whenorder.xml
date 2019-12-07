@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="75"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/listview_whenorder_menuname"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="menu's name"
+            android:textColor="#33aabb"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/listview_whenorder_menudes"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="menu's description"
+            android:textColor="#33aabb"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/listview_whenorder_takeout"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="ExpectedTime"
+            android:textColor="#33aabb"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/listview_whenorder_expectedTime"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="ExpectedTime"
+            android:textColor="#33aabb"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/listview_whenorder_menuOption"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Option"
+            android:textColor="#33aabb"
+            android:textStyle="bold" />
+
+        <!--        <com.google.android.material.textfield.TextInputEditText-->
+        <!--            android:id="@+id/listview_whenorder_optionselect"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="20dp"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:layout_marginRight="20dp"-->
+        <!--            android:layout_marginBottom="5dp"-->
+        <!--            android:hint="Select Option"-->
+        <!--            android:inputType="text"-->
+        <!--            android:padding="12dp"-->
+        <!--            android:textColor="#000" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/listview_whenorder_menu_options"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="64dp"-->
+        <!--            android:layout_weight="60"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:text="menu's option"-->
+        <!--            android:textColor="#33aabb"-->
+        <!--            android:textStyle="bold" />-->
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/listview_whenorder_menuimage"
+        android:layout_width="wrap_content"
+        android:layout_height="115dp"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/listview_whenorder_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:text="add" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        />
+
+    <Button
+        android:id="@+id/listview_whenorder_button2"
+        android:layout_width="31dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="delete" />
+
+    <TextView
+        android:id="@+id/listview_whenorder_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+</LinearLayout>

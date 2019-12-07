@@ -24,7 +24,7 @@ class CustomAuthToken(ObtainAuthToken):
 
 class SignUp(APIView):
     def post(self, request):
-        serializer = SignUpSerializer(data=request.data, partial=True)
+        serializer = SignUpSerializer(data=request.data)
 
         if serializer.is_valid():
             user = serializer.save()
@@ -50,18 +50,30 @@ class UserDetail(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        # data = request.data
+        data = request.data
+        print(request.user.id)
         try:
             user = CustomUser.objects.get(pk=request.user.id)
         except CustomUser.DoesNotExist:
             return Response({"message": "does not found."}, status=status.HTTP_404_NOT_FOUND)
+        print("ok 1")
 
-        raw_password = request.data.get('password', '')
-        request.data['password'] = make_password(raw_password) if raw_password != '' else user.password
-        serializer = SignUpSerializer(user, data=request.data, partial=True)
+        data['username'] = data.get('username', user.username)
+        print("ok 1")
 
+        data['email'] = data.get('email', user.email)
+
+        print("ok 1")
+
+        raw_password = data.get('password', '')
+        data['password'] = make_password(raw_password) if raw_password != '' else user.password
+        data['isStore'] = user.isStore
+        data['phone'] = data.get('phone', user.phone)
+
+        
+        serializer = SignUpSerializer(user, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Please check your form'}, status=status.HTTP_400_BAD_REQUEST)

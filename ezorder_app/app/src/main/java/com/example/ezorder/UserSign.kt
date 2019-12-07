@@ -10,6 +10,8 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import org.json.JSONObject
 
 
@@ -38,13 +40,28 @@ class UserSign : AppCompatActivity() {
             params["nickname"] = nickname.text.toString()
             params["isStore"] = "false"
 
+            // Firebase id
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Toast.makeText(baseContext, "error!", Toast.LENGTH_SHORT).show()
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+                    params.put("token", token!!)
+                    // Log and toast
+                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                })
+
             VolleyService.POSTVolley(this, "user/signup/", params) { testSuccess, response ->
                 if (testSuccess) {
                     //Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
 
-                    val nextIntent = Intent(this@UserSign, main_user::class.java)
+                    val nextIntent = Intent(this@UserSign, MainUser::class.java)
                     nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(nextIntent)
 

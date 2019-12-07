@@ -77,6 +77,15 @@
                     android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/user_nickname_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Nickname: kookie97"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -97,17 +106,9 @@
                     android:id="@+id/user_phone_number_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact: giv"
-                    android:textSize="14dp"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/user_nickname_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nickname: kookie97"
-                    android:textSize="14dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:text="Contact: 010-1111-2222"
+                    android:textSize="14dp" />
 
             </LinearLayout>
 

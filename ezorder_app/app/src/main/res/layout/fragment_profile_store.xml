@@ -59,13 +59,13 @@
 
 
             <TextView
-                android:id="@+id/store_location_text"
+                android:id="@+id/store_username_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gwanak-ro 161-1, Seoul"
                 android:layout_gravity="center"
+                android:text="Username: givenone"
                 android:textColor="@android:color/black"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,12 +77,12 @@
                 android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/store_operating_hours_text"
+                android:id="@+id/store_email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Operating Hours: 08:00 ~ 24:00"
-                android:textSize="14dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Email: givenone@snu.ac.kr"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/store_phone_number_text"
@@ -96,9 +96,9 @@
                 android:id="@+id/store_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Escape your routine at the bean!"
-                android:textSize="14dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Information: Escape your routine at the bean!"
+                android:textSize="14dp" />
 
         </LinearLayout>
 
@@ -116,47 +116,19 @@
                 android:textAlignment="center"
                 android:textColor="@color/ez_red_light" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ScrollView
-                android:id="@+id/store_menu"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/edit_menu_button"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/menu_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="MENU"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/menu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Caramel Macchiato\nCafe Latte\nCapuccino\nAmericano"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-
+                android:background="@drawable/rounded"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="EDIT MENU"
+                android:textAlignment="center"
+                android:textColor="@color/ez_red_light" />
         </LinearLayout>
     </ScrollView>
 

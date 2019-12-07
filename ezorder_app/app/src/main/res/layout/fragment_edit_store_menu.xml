@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edit_store_menu">
+
+    <LinearLayout
+        android:id="@+id/menu_edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/store_menu_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_edit_title"
+        android:layout_above="@id/add_menu_btn"/>
+
+    <ImageButton
+        android:id="@+id/add_menu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/icon_plus" />
+
+</RelativeLayout>

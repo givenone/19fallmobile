@@ -12,7 +12,7 @@ class MainStore : AppCompatActivity() {
 
     val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
             when (item.getItemId()) {
-                R.id.navigation_store_order -> {// TODO :: navigation in bottomnavigationView (Unsure)
+                R.id.navigation_store_order -> {
                     val fragmentA = manage_orders.newInstance()
                     openFragment(fragmentA)
                     return@OnNavigationItemSelectedListener true
@@ -20,6 +20,10 @@ class MainStore : AppCompatActivity() {
                 R.id.navigation_store_profile -> {
                     val fragmentB = profile_store.newInstance()
                     openFragment(fragmentB)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_store_home -> {
+                    finish()
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -39,7 +43,6 @@ class MainStore : AppCompatActivity() {
 
         val bottomNavigationView = findViewById(R.id.nav_store) as BottomNavigationView
         bottomNavigationView.setOnNavigationItemSelectedListener(mlistener)
-
         openFragment(profile_store.newInstance()) // default fragment : profile!
     }
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
+    android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".edit_my_store">
 
     <ScrollView
@@ -82,7 +83,7 @@
                     android:layout_marginLeft="27dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Store Name"
+                    android:text="Username"
                     android:textColor="#969696"
                     android:textSize="15sp" />
 
@@ -95,7 +96,7 @@
                     android:padding="10dp">
 
                     <EditText
-                        android:id="@+id/store_name_edit"
+                        android:id="@+id/store_username_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00000000"
@@ -111,7 +112,7 @@
                     android:layout_marginLeft="27dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Operating Hours"
+                    android:text="Email"
                     android:textColor="#969696"
                     android:textSize="15sp" />
 
@@ -124,7 +125,7 @@
                     android:padding="10dp">
 
                     <EditText
-                        android:id="@+id/store_operating_hours_edit"
+                        android:id="@+id/store_email_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00000000"
@@ -140,7 +141,36 @@
                     android:layout_marginLeft="27dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Contact Information"
+                    android:text="Password"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/store_pw_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Phone Number"
                     android:textColor="#969696"
                     android:textSize="15sp" />
 
@@ -154,6 +184,35 @@
 
                     <EditText
                         android:id="@+id/store_contact_info_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Name"
+                    android:textColor="#969696"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rect_grayoutline1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/store_name_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00000000"
@@ -207,7 +266,7 @@
                     android:background="@color/ez_red"
                     android:text="CONFIRM"
                     android:textColor="@android:color/white"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
 
             </RelativeLayout>
         </LinearLayout>
