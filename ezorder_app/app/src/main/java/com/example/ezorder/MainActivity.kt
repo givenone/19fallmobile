@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                     val token = task.result?.token
                     params.put("token", token!!)
                     // Log and toast
-                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
                 })
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
@@ -104,13 +104,13 @@ class MainActivity : AppCompatActivity() {
                     if(!JSONObject(response).getBoolean("isStore"))
                     {// if user
                         val nextIntent = Intent(this@MainActivity, MainUser::class.java)
-                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                        //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
                     }
                     else
                     {// if store
                         val nextIntent = Intent(this@MainActivity, MainStore::class.java)
-                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                        //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
                     }
                 } else {

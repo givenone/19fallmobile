@@ -40,8 +40,8 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
     var infoWindowClickListener: GoogleMap.OnInfoWindowClickListener =
         GoogleMap.OnInfoWindowClickListener { marker ->
             val markerId = marker.id
-            Toast.makeText(this@GMap, "정보창 클릭 Marker ID : $markerId", Toast.LENGTH_SHORT)
-                .show()
+            //Toast.makeText(this@GMap, "정보창 클릭 Marker ID : $markerId", Toast.LENGTH_SHORT)
+              //  .show()
         }
 
     //마커 클릭 리스너
@@ -52,7 +52,7 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
             val location = marker.position
             Toast.makeText(
                 this@GMap,
-                "마커 클릭 Marker ID : " + markerId + "(" + location.latitude + " " + location.longitude + ")",
+                "Info : " + marker.title + "\n" + marker.snippet,
                 Toast.LENGTH_SHORT
             ).show()
             false
@@ -76,7 +76,6 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
         val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
 
-
         if ( ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION )
                 != PackageManager.PERMISSION_GRANTED )
             {
@@ -85,15 +84,16 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
             }
 
-            try{
-                ActivityCompat.requestPermissions( this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
-            }
-            catch (ex : SecurityException) {
+        try
+        {
+            ActivityCompat.requestPermissions( this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+        }
+        catch (ex : SecurityException) {
                 Toast.makeText(this.getApplicationContext(),
                     ex.toString(), Toast.LENGTH_SHORT).show()
-            }
+        }
 
 
         // manyMarker();
@@ -139,17 +139,19 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
     fun manyMarker(jsonArr: JSONArray) {
 
         // for loop를 통한 n개의 마커 생성
+
         for (idx in 0 until jsonArr.length()) {
             // 1. 마커 옵션 설정 (만드는 과정)
             val makerOptions = MarkerOptions()
             val obj = jsonArr.getJSONObject(idx)
-            if(obj.get("latitude") != null && obj.get("longitude") != null)
-            {
-                makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
-                    .position(LatLng(obj.getDouble("latitude"), obj.getDouble("longitude")))
-                    .title(obj.getString("name"))
-            }
 
+
+            makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+                    .position(LatLng(obj.getDouble("longitude"), obj.getDouble("latitude")))
+                    .title(obj.getString("name"))
+                    .snippet(obj.getString("information"))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                    .alpha(0.5f)
             // 2. 마커 생성 (마커를 나타냄)
             mMap!!.addMarker(makerOptions)
         }
@@ -160,17 +162,17 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
         mMap!!.setOnMarkerClickListener(markerClickListener)
 
         // 카메라를 위치로 옮긴다.
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(LatLng(37.52487, 126.92723)))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.52487, 126.92723), 16f))
     }
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             long = location.longitude
             lat = location.latitude
-            oneMarker(lat, long)
+            //oneMarker(lat, long)
 
             VolleyService.GETVolley(this@GMap,
-                "store?longitude=${location.longitude}&latitude=${location.latitude}", VolleyService.token) { testSuccess, response ->
+                "store/"/*?longitude=${location.longitude}&latitude=${location.latitude}"*/, VolleyService.token) { testSuccess, response ->
                 if (testSuccess) {
                     val jsonArr: JSONArray = JSONArray(response)
                     manyMarker(jsonArr)
