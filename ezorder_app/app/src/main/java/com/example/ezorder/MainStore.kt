@@ -12,7 +12,7 @@ class MainStore : AppCompatActivity() {
 
     val mlistener = BottomNavigationView.OnNavigationItemSelectedListener { item : MenuItem ->
             when (item.getItemId()) {
-                R.id.navigation_store_order -> {// TODO :: navigation in bottomnavigationView (Unsure)
+                R.id.navigation_store_order -> {
                     val fragmentA = manage_orders.newInstance()
                     openFragment(fragmentA)
                     return@OnNavigationItemSelectedListener true
