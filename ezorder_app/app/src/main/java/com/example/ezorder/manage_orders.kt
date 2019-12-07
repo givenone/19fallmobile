@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import order
 import org.json.JSONArray
 
@@ -25,26 +26,40 @@ class manage_orders : Fragment(){
         VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "order/", VolleyService.token) { testSuccess, response ->
             if (testSuccess) {
                 val jsonArr: JSONArray = JSONArray(response)
-                val Adapter = ListOrderAdapter(
-                getActivity()!!.getApplicationContext(),
-                jsonArr
-            ) { order_id ->
-                val frag_03 = detail_order()
-                val bundle = Bundle()
-                bundle.putInt("order_id",order_id)
-                frag_03.arguments=bundle
-                val transaction = fragmentManager!!.beginTransaction()
-                transaction.replace(R.id.user_container,frag_03)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                val Adapter = ManageOrderAdapter(getActivity()!!.getApplicationContext(), jsonArr
+            ) { flag, order_id ->
+                    if(flag == 0) // confirm order
+                    {
+                        VolleyService.PUTVolley(getActivity()!!.getApplicationContext(), "order/{$order_id}/", null){testSuccess, response ->
+                            if(testSuccess){
+                                //reload fragment
+                                fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+                            }
+                            else{
+                                Toast.makeText(
+                                    getActivity()!!.getApplicationContext(), response, Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                    else if(flag == 1) // view detail of the order
+                    {// follow what wookje did to go into detail_order
+                        val frag_03 = detail_order()
+                        val bundle = Bundle()
+                        bundle.putInt("order_id",order_id)
+                        frag_03.arguments=bundle
+                        val transaction = fragmentManager!!.beginTransaction()
+                        transaction.replace(R.id.user_container,frag_03)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+                    }
+
             }
             listview.adapter = Adapter
         }
         else {
             Toast.makeText(
-                getActivity()!!.getApplicationContext(),
-                "Test Fail ",
-                Toast.LENGTH_SHORT
+                getActivity()!!.getApplicationContext(), response, Toast.LENGTH_SHORT
             ).show()
         }
     }

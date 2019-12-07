@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.*
 import org.json.JSONArray
 
-class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val itemClick: (String) -> Unit) : BaseAdapter() {
+class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val itemClick: (Int, Int) -> Unit) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        /* LayoutInflater는 item을 Adapter에서 사용할 View로 부풀려주는(inflate) 역할을 한다. */
 
         val view: View = LayoutInflater.from(context).inflate(R.layout.listview_manage_orders, null)
 
@@ -27,16 +26,55 @@ class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val ite
         val confirmButton=view.findViewById<Button>(R.id.listview_manage_orders_confirm)
         val DetailButton=view.findViewById<Button>(R.id.listview_manage_orders_detail)
 
-        val order = orderlist.getJSONObject(position)
+        val order = orderlist.getJSONObject(position) // order json object
+        //{
+        //    "id": 6,
+        //    "request": "안재원은 잘생겼다",
+        //    "done": false,
+        //    "created": "2019-11-25T15:03:20.414353",
+        //    "user_nickname": "hahaho",
+        //    "menus": [
+        //        {
+        //            "id": 10,
+        //            "menu_name": "Cheese Stick",
+        //            "quantity": 3,
+        //            "option": [
+        //                {
+        //                    "text": "hot or cold?",
+        //                    "choice": "yes"
+        //                },
+        //                {
+        //                    "text": "Add Shot",
+        //                    "choice": "yes"
+        //                }
+        //            ]
+        //        },
+        //        {
+        //            "id": 11,
+        //            "menu_name": "Cheese Stick",
+        //            "quantity": 2,
+        //            "option": [
+        //                {
+        //                    "text": "hot or cold?",
+        //                    "choice": "no"
+        //                },
+        //                {
+        //                    "text": "Add Shot",
+        //                    "choice": "no"
+        //                }
+        //            ]
+        //        }
+        //    ],
+        //    "total_price": 3000000
+        //}
         request.text = order.getString("request")
         userName.text = order.getString("user_nickname")
         menuPrice.text = order.getString("total_price")
+
         var textCreated=order.getString("created")
         var delimeter="T"
-        //parts[0] = date parts[1]= time
         val parts=textCreated.split(delimeter)
         delimeter=":"
-        //times[0]=hour times[1]=min
         val times=parts[1].split(delimeter)
         created.text = parts[0]+"\t"+times[0]+":"+times[1]
 
@@ -49,10 +87,13 @@ class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val ite
         }
 
         confirmButton.setOnClickListener {
-            //itemClick(order.getInt("id"))
+            itemClick(0, order.getInt("id"))
+            // PUT REQUEST TO baseurl/order/order_id/
+
+            // TODO :: make notification
         }
         DetailButton.setOnClickListener {
-            //itemClick(order.getInt("id"))
+            itemClick(1, order.getInt("id"))
         }
         val menu = order.getJSONArray("menus")
 
@@ -63,6 +104,7 @@ class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val ite
             menutext += "{${t.getString("menu_name")} : ${t.getString("quantity")} \n ${t.getJSONArray("option")}\n"
         }
         menuName.text = menutext
+
         //TODO:: menuExpectedTime.text="Expected Time: "+menu.getString("expected_time")
 
 
