@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,11 +14,6 @@
         android:background="#ffffff"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,16 +66,8 @@
                         android:layout_height="wrap_content"
                         android:onClick="deleteMenu"
                         android:text="x" />
-
                 </LinearLayout>
-
-
             </LinearLayout>
-
-
-
-        </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
 
