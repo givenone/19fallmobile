@@ -27,9 +27,10 @@ class UserOrderSerializer(serializers.ModelSerializer):
 class StoreOrderSerializer(serializers.ModelSerializer):
     user_nickname = serializers.ReadOnlyField(source='user.nickname')
     menus = OrderMenuSerializer(many=True)
+    store_name = serializers.ReadOnlyField(source='store.name')
 
     class Meta:
         model = Order
-        fields = ('id', 'request', 'done', 'created', 'user_nickname', 'menus', 'total_price')
+        fields = ('id', 'request', 'done', 'created', 'user_nickname', 'menus', 'total_price', 'store_name')
 
 

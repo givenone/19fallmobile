@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_navigation"
+    app:startDestination="@id/profile_store">
+    <fragment
+        android:id="@+id/profile_store"
+        android:name="com.example.ezorder.profile_store"
+        android:label="fragment_profile_store"
+        tools:layout="@layout/fragment_profile_store" >
+        <action
+            android:id="@+id/action_profile_store_to_manage_orders"
+            app:destination="@id/manage_orders" />
+    </fragment>
+    <fragment
+        android:id="@+id/manage_my_store"
+        android:name="com.example.ezorder.edit_my_store"
+        android:label="fragment_manage_my_store"
+        tools:layout="@layout/fragment_edit_my_store" >
+        <action
+            android:id="@+id/action_manage_my_store_to_manage_orders"
+            app:destination="@id/manage_orders" />
+    </fragment>
+    <fragment
+        android:id="@+id/manage_orders"
+        android:name="com.example.ezorder.manage_orders"
+        android:label="fragment_manage_orders"
+        tools:layout="@layout/fragment_manage_orders" >
+        <action
+            android:id="@+id/action_manage_orders_to_profile_store"
+            app:destination="@id/profile_store" />
+        <action
+            android:id="@+id/action_manage_orders_to_manage_my_store"
+            app:destination="@id/manage_my_store" />
+    </fragment>
+</navigation>

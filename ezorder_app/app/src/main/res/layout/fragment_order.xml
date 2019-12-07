@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edit_store_menu">
+
+    <LinearLayout
+        android:id="@+id/menu_edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Order List"
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/text_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/store_menu_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_edit_title"/>
+
+</RelativeLayout>

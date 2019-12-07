@@ -10,12 +10,11 @@ from .serializers import UserProfileSerializer, SignUpSerializer
 from Store.serializers import StoreProfileSerializer
 from .models import CustomUser
 
-
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)        
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return Response({
@@ -23,10 +22,10 @@ class CustomAuthToken(ObtainAuthToken):
             'isStore': user.isStore,
         })
 
-
 class SignUp(APIView):
     def post(self, request):
         serializer = SignUpSerializer(data=request.data, partial=True)
+
         if serializer.is_valid():
             user = serializer.save()
             return Response({'isStore': user.isStore, 'token': user.auth_token.key}, status=status.HTTP_201_CREATED)
@@ -51,16 +50,28 @@ class UserDetail(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        # data = request.data
+        data = request.data
+        print(request.user.id)
         try:
             user = CustomUser.objects.get(pk=request.user.id)
         except CustomUser.DoesNotExist:
             return Response({"message": "does not found."}, status=status.HTTP_404_NOT_FOUND)
+        print("ok 1")
 
-        raw_password = request.data.get('password', '')
-        request.data['password'] = make_password(raw_password) if raw_password != '' else user.password
-        serializer = SignUpSerializer(user, data=request.data, partial=True)
+        data['username'] = data.get('username', user.username)
+        print("ok 1")
 
+        data['email'] = data.get('email', user.email)
+
+        print("ok 1")
+
+        raw_password = data.get('password', '')
+        data['password'] = make_password(raw_password) if raw_password != '' else user.password
+        data['isStore'] = user.isStore
+        data['phone'] = data.get('phone', user.phone)
+
+        
+        serializer = SignUpSerializer(user, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
