@@ -3,13 +3,10 @@ package com.example.ezorder
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -17,9 +14,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.io.IOException
 
-class store_location : FragmentActivity(), OnMapReadyCallback {
+class Store_location : FragmentActivity(), OnMapReadyCallback {
 
     private var mMap: GoogleMap? = null
     private var geocoder: Geocoder? = null
@@ -44,7 +40,7 @@ class store_location : FragmentActivity(), OnMapReadyCallback {
             //선택한 타겟위치
             val location = marker.position
 
-            val intent = Intent(this@store_location,StoreSign::class.java);
+            val intent = Intent(this@Store_location,StoreSign::class.java);
             var longitude = location.latitude
             var latitude = location.longitude
             intent.putExtra("longitude", longitude)
@@ -88,7 +84,7 @@ class store_location : FragmentActivity(), OnMapReadyCallback {
         button!!.setOnClickListener {
             val str = editText!!.text.toString()
             Toast.makeText(
-                this@store_location,
+                this@Store_location,
                 str, Toast.LENGTH_SHORT
             ).show()
             var addressList:List<Address>? = null

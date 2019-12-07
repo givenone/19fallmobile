@@ -32,6 +32,18 @@
             android:layout_height="49dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_location" />
+        <ImageButton
+            android:id="@+id/gps_search_button"
+            android:layout_width="40dp"
+            android:layout_height="49dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_location2" />
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="40dp"
+            android:layout_height="49dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_menu_find" />
 
     </LinearLayout>
 

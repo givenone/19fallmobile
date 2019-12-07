@@ -22,6 +22,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.fragment_search.*
+import org.json.JSONArray
 import profile
 
 //참고 : https://mailmail.tistory.com/17
@@ -134,14 +136,19 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
     }
 
     ////////////////////////  구글맵 마커 여러개생성 및 띄우기 //////////////////////////
-    fun manyMarker() {
+    fun manyMarker(jsonArr: JSONArray) {
+
         // for loop를 통한 n개의 마커 생성
-        for (idx in 0..9) {
+        for (idx in 0 until jsonArr.length()) {
             // 1. 마커 옵션 설정 (만드는 과정)
             val makerOptions = MarkerOptions()
-            makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
-                .position(LatLng(37.52487 + idx, 126.92723))
-                .title("마커$idx") // 타이틀.
+            val obj = jsonArr.getJSONObject(idx)
+            if(obj.get("latitude") != null && obj.get("longitude") != null)
+            {
+                makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+                    .position(LatLng(obj.getDouble("latitude"), obj.getDouble("longitude")))
+                    .title(obj.getString("name"))
+            }
 
             // 2. 마커 생성 (마커를 나타냄)
             mMap!!.addMarker(makerOptions)
@@ -161,8 +168,16 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
             long = location.longitude
             lat = location.latitude
             oneMarker(lat, long)
-            Toast.makeText(this@GMap,
-                "longitude : ${location.longitude} + langitude : ${location.latitude} ", Toast.LENGTH_SHORT).show()
+
+            VolleyService.GETVolley(this@GMap,
+                "store?longitude=${location.longitude}&latitude=${location.latitude}", VolleyService.token) { testSuccess, response ->
+                if (testSuccess) {
+                    val jsonArr: JSONArray = JSONArray(response)
+                    manyMarker(jsonArr)
+                } else {
+                    Toast.makeText(this@GMap, response, Toast.LENGTH_LONG).show()
+                }
+            }
         }
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}
