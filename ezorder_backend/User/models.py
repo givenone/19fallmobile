@@ -10,6 +10,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     isStore = models.BooleanField(default=True)
     phone = models.CharField(max_length=15, null=False)
+    token = models.CharField(max_length=200, null=True)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

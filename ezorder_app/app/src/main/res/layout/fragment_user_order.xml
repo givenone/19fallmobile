@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user_order">
+
+    <LinearLayout
+        android:id="@+id/menu_edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:textAlignment="center"
+            android:textColor="@color/ez_red"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/user_order_menu_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_edit_title"
+        android:layout_weight="0.75"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/darker_gray"/>
+
+    <ListView
+        android:id="@+id/user_order_summary_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_order_menu_listview"
+        android:layout_above="@+id/user_order_button_layout"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/user_order_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/user_order_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ez_red"
+            android:text="Order Total Price : "
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:layout_margin="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

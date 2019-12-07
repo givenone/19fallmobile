@@ -18,12 +18,13 @@ class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email', 'password', 'isStore', 'phone', 'nickname',
-                  'name', 'information', 'latitude', 'longitude')
+                  'name', 'information', 'latitude', 'longitude', 'token')
 
     def create(self, validated_data):
         user = CustomUser.objects.create(username=validated_data['username'], email=validated_data['email'],
                                          password=make_password(validated_data['password']),
-                                         isStore=validated_data['isStore'], phone=validated_data['phone'])
+                                         isStore=validated_data['isStore'], phone=validated_data['phone'],
+                                         token=validated_data['token'])
         if validated_data['isStore']:
             user.store_profile = StoreProfile.objects.create(name=validated_data['name'],
                                                              information=validated_data['information'],

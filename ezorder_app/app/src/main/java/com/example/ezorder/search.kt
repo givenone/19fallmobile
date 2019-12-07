@@ -22,6 +22,8 @@ import android.Manifest.permission
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Intent
 import android.location.LocationListener
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.fragment_search.*
 
 
 class search : Fragment() {
@@ -60,6 +62,57 @@ class search : Fragment() {
             }
         }
 
+        val search_button = view.findViewById<ImageButton>(R.id.search_button)
+        val text = view.findViewById<TextInputEditText>(R.id.search_stores)
+        search_button.setOnClickListener {
+            VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store?name=${text.text.toString()}/", VolleyService.token) { testSuccess, response ->
+                if (testSuccess) {
+                    val jsonArr: JSONArray = JSONArray(response)
+
+                    val Adapter = SearchAdapter(
+                        getActivity()!!.getApplicationContext(),
+                        jsonArr
+                    ) { store_id ->
+                        val frag_02 = whenorder()
+                        val bundle = Bundle()
+                        bundle.putInt("store_id",store_id)
+                        frag_02.arguments=bundle
+                        val transaction = fragmentManager!!.beginTransaction()
+                        transaction.replace(R.id.user_container, frag_02)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+
+                    }
+                    listview.adapter = Adapter
+
+                } else {
+                    Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        val gps_search_button = view.findViewById<ImageButton>(R.id.gps_search_button)
+        gps_search_button.setOnClickListener {
+            val lm = context!!.getSystemService(LOCATION_SERVICE) as LocationManager
+            if ( ContextCompat.checkSelfPermission(getActivity()!!.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION )
+                != PackageManager.PERMISSION_GRANTED )
+            {
+                ActivityCompat.requestPermissions( getActivity()!!,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+            }
+
+            try{
+                ActivityCompat.requestPermissions( getActivity()!!,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+            }
+            catch (ex : SecurityException) {
+                Toast.makeText(getActivity()!!.getApplicationContext(),
+                    ex.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
         val user_search_button = view.findViewById<ImageButton>(R.id.user_search_button)
         val lm = context!!.getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -70,13 +123,9 @@ class search : Fragment() {
             {
                 ActivityCompat.requestPermissions( getActivity()!!,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
             }
 
             try{
-                ActivityCompat.requestPermissions( getActivity()!!,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
                 val transaction = fragmentManager!!.beginTransaction()
 
                 val nextIntent = Intent(activity, GMap::class.java)
@@ -87,12 +136,38 @@ class search : Fragment() {
                     ex.toString(), Toast.LENGTH_SHORT).show()
             }
 
-
         }
+
         return view
     }
+    @ExperimentalStdlibApi
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
+            VolleyService.GETVolley(getActivity()!!.getApplicationContext(),
+                "store?longitude=${location.longitude}&latitude=${location.latitude}", VolleyService.token) { testSuccess, response ->
+                if (testSuccess) {
+                    val jsonArr: JSONArray = JSONArray(response)
+
+                    val Adapter = SearchAdapter(
+                        getActivity()!!.getApplicationContext(),
+                        jsonArr
+                    ) { store_id ->
+                        val frag_02 = whenorder()
+                        val bundle = Bundle()
+                        bundle.putInt("store_id",store_id)
+                        frag_02.arguments=bundle
+                        val transaction = fragmentManager!!.beginTransaction()
+                        transaction.replace(R.id.user_container, frag_02)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+
+                    }
+                    listview.adapter = Adapter
+
+                } else {
+                    Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                }
+            }
         }
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}
