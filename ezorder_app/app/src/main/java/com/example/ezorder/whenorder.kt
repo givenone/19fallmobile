@@ -18,6 +18,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.popup_whenorder.*
 import kotlinx.android.synthetic.main.whenorder.*
@@ -103,7 +104,7 @@ class whenorder :  Fragment() {
                         val mPopupWindow = PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                         val menuname=popupView.findViewById<TextView>(R.id.popup_whenorder_menuName)
                         val request=popupView.findViewById<TextInputEditText>(R.id.popup_whenorder_request)
-                        val addButton=popupView.findViewById<Button>(R.id.popup_add)
+                        val addButton=popupView.findViewById<FloatingActionButton>(R.id.popup_add)
                         menuname.text=name
                         //popupView 에서 (LinearLayout 을 사용) 레이아웃이 둘러싸고 있는 컨텐츠의 크기 만큼 팝업 크기를 지정
 
