@@ -85,22 +85,14 @@
 <!--                android:layout_gravity="end|bottom"-->
 <!--                android:layout_margin="16dp"-->
 <!--                android:src="@drawable/icon_plus" />-->
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="bottom">
-
-                <Button
-                    android:id="@+id/popup_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ez_red"
-                    android:text="Add"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp"/>
-
-            </RelativeLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/popup_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/ez_red"
+                android:src="@drawable/ic_plus_white" />
 
         </LinearLayout>
 

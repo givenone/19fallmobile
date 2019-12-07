@@ -1,5 +1,6 @@
 package com.example.ezorder
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,6 +26,14 @@ class MainUser : AppCompatActivity() {
             R.id.navigation_profile -> {
                 val fragmentC = profile.newInstance()
                 openFragment(fragmentC)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_home -> {
+                startActivity(
+                    Intent(applicationContext, MainActivity::class.java).setFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    )
+                )
                 return@OnNavigationItemSelectedListener true
             }
         }

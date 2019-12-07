@@ -60,6 +60,7 @@ class detail_order : Fragment() {
                 textStoreName.text = json.getString("store_name")
 
 
+
                 //parsing created to show more prettier.
                 var textCreated=json.getString("created")
                 var delimeter="T"

@@ -26,17 +26,18 @@
         android:id="@+id/store_menu_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menu_edit_title"
-        android:layout_above="@id/add_menu_btn"/>
+        android:layout_below="@+id/menu_edit_title" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_menu_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:src="@drawable/icon_plus"
-        android:layout_margin="10dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="50dp"
+        android:backgroundTint="@color/ez_red"
+        android:src="@drawable/ic_plus_white" />
 
 </RelativeLayout>
