@@ -13,4 +13,8 @@
         android:icon="@android:drawable/ic_menu_edit"
         android:title="My Store Profile" />
 
+    <item
+        android:id="@+id/navigation_store_home"
+        android:icon="@drawable/ic_back"
+        android:title="Home" />
 </menu>

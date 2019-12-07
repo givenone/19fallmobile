@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                     if(!JSONObject(response).getBoolean("isStore"))
                     {// if user
                         val nextIntent = Intent(this@MainActivity, MainUser::class.java)
-                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                        //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
                     }
 //                    else

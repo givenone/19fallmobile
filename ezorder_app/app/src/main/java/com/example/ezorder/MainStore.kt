@@ -22,6 +22,10 @@ class MainStore : AppCompatActivity() {
                     openFragment(fragmentB)
                     return@OnNavigationItemSelectedListener true
                 }
+                R.id.navigation_store_home -> {
+                    finish()
+                    return@OnNavigationItemSelectedListener true
+                }
             }
         return@OnNavigationItemSelectedListener false
     }

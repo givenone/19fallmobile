@@ -27,6 +27,10 @@ class MainUser : AppCompatActivity() {
                 openFragment(fragmentC)
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_home -> {
+                finish()
+                return@OnNavigationItemSelectedListener true
+            }
         }
         return@OnNavigationItemSelectedListener false
     }

@@ -1,11 +1,19 @@
 package com.example.ezorder
 
+import android.Manifest
+import android.app.PendingIntent.getActivity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
+import android.location.LocationManager
 import androidx.fragment.app.FragmentActivity
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -21,7 +29,8 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
 
     //구글맵참조변수
     var mMap: GoogleMap? = null
-
+    var long = 0.0
+    var lat = 0.0
     //마커정보창 클릭리스너는 다작동하나, 마커클릭리스너는 snippet정보가 있으면 중복되어 이벤트처리가 안되는거같다.
     // oneMarker(); 는 동작하지않으나 manyMarker(); 는 snippet정보가 없어 동작이가능하다.
 
@@ -61,7 +70,30 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
         mMap = googleMap
         //지도타입 - 일반
         mMap!!.mapType = GoogleMap.MAP_TYPE_NORMAL
-        oneMarker(37.52487, 126.92723)
+
+        val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+
+
+        if ( ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION )
+                != PackageManager.PERMISSION_GRANTED )
+            {
+                ActivityCompat.requestPermissions( this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+            }
+
+            try{
+                ActivityCompat.requestPermissions( this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0 )
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0.1f,locationListener)
+            }
+            catch (ex : SecurityException) {
+                Toast.makeText(this.getApplicationContext(),
+                    ex.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+
         // manyMarker();
     }
 
@@ -126,7 +158,9 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            oneMarker(location.longitude, location.latitude)
+            long = location.longitude
+            lat = location.latitude
+            oneMarker(lat, long)
             Toast.makeText(this@GMap,
                 "longitude : ${location.longitude} + langitude : ${location.latitude} ", Toast.LENGTH_SHORT).show()
         }
@@ -134,26 +168,7 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
         override fun onProviderEnabled(provider: String) {}
         override fun onProviderDisabled(provider: String) {}
     }
-    inner class MylocationListener: LocationListener {
 
-        var mylocation : Location?
-
-        constructor():super(){
-            mylocation= Location("me")
-            mylocation!!.longitude
-            mylocation!!.latitude
-        }
-
-        override fun onLocationChanged(location: Location?) {
-            mylocation = location
-        }
-
-        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
-
-        override fun onProviderEnabled(p0: String?) {}
-
-        override fun onProviderDisabled(p0: String?) {}
-    }
 
     companion object {
         fun newInstance(): GMap = GMap()
