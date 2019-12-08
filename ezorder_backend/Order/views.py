@@ -62,8 +62,9 @@ class OrderList(APIView):
 
     def get_excepted_time(self, request, store):
         waiting_orders = []
-        for order in store.orders:
-            if order.done == False:
+        orders = Order.objects.get(store=store)
+        for order in orders:
+            if not order.done:
                 waiting_orders.append(order)
 
         menus = [Menu.objects.get(id=int(menu['id'])) for menu in request.data['menus']]
