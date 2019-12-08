@@ -1,6 +1,7 @@
 from rest_framework import (permissions, status)
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import datetime
 
 from  django.utils import timezone
 
@@ -71,7 +72,8 @@ class OrderList(APIView):
         result = max(menus, key=lambda menu: menu.expected_time).expected_time
 
         if len(waiting_orders) >= 5:
-            result += sum(menu.expected_time for menu in menus)/len(menus)
+            result += datetime.timedelta(sum([menu.expected_time for menu in menus],
+                                             start=datetime.timedelta()).total_seconds()/len(menus))
 
         return result
 
