@@ -35,13 +35,14 @@ class StoreList(APIView):
                                                     latitude__gt=latitude - 0.02,
                                                     longitude__lt=longitude + 0.02,
                                                     longitude__gt=longitude - 0.02)
-        if len(stores_nearby) <= 50:
+        if not stores_nearby.exists():
+            raise Http404
+
+        if stores_nearby.count() <= 50:
             return stores_nearby
         else:
             return heapq.nsmallest(50, stores_nearby,
                                    key=lambda store: haversine((store.latitude, store.longitude), my_location))
-
-
 
 
 class StoreDetail(APIView):
