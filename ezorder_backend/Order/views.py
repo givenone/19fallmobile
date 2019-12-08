@@ -40,16 +40,12 @@ class OrderList(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        """
-        :param request: {request : ~, total_price: 15000 menus: [{id:menu_id, quantity:3, option:json}]}
-        :return:
-        """
-
         try:
             store = Menu.objects.get(id=int(request.data['menus'][0]['id'])).store
             order = Order.objects.create(request=request.data['request'],
                                          store=store,
                                          user=request.user.user_profile,
+                                         expected_time=self.get_excepted_time(request, store),
                                          total_price=request.data['total_price'])
 
             menus = request.data['menus']
@@ -63,6 +59,20 @@ class OrderList(APIView):
             return Response(UserOrderSerializer(order).data, status=status.HTTP_201_CREATED)
         except KeyError:
             return Response({'message': 'Please Check request field!'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_excepted_time(self, request, store):
+        waiting_orders = []
+        for order in store.orders:
+            if order.done == False:
+                waiting_orders.append(order)
+
+        menus = [Menu.objects.get(id=int(menu['id'])) for menu in request.data['menus']]
+        result = max(menus, key=lambda menu: menu.expected_time)
+
+        if len(waiting_orders) >= 5:
+            result += sum(menu.expected_time for menu in menus)/len(menus)
+
+        return result
 
 
 class OrderDetail(APIView):
@@ -89,6 +99,5 @@ class OrderDetail(APIView):
         order = self.get_object(pk)
         order.done = True
         order.save()
-        send_fcm_notification(order.user.user.token, 'Order done!', f'Your order from {order.store.name} has been done.')
 
         return Response(data=StoreOrderSerializer(order).data, status=status.HTTP_200_OK)
