@@ -31,10 +31,10 @@ class StoreList(APIView):
 
     def store_search(self, latitude, longitude):
         my_location = (float(latitude), float(longitude))
-        stores_nearby = StoreProfile.objects.filter(latitude__lt=latitude + 0.02,
-                                                    latitude__gt=latitude - 0.02,
-                                                    longitude__lt=longitude + 0.02,
-                                                    longitude__gt=longitude - 0.02)
+        stores_nearby = StoreProfile.objects.filter(latitude__lt=my_location[0] + 0.02,
+                                                    latitude__gt=my_location[0] - 0.02,
+                                                    longitude__lt=my_location[1] + 0.02,
+                                                    longitude__gt=my_location[1] - 0.02)
         if not stores_nearby.exists():
             raise Http404
 
