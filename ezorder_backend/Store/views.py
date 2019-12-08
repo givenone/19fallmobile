@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from .serializers import StoreSerializer, StoreListSerializer, MenuSerializer
 from .models import StoreProfile, Menu
 
+from haversine import haversine
+import heapq
+
 from django.http import Http404
 
 
@@ -12,15 +15,33 @@ class StoreList(APIView):
 
     def get_queryset(self, request):
         try:
-            queryset = StoreProfile.objects.all()
+            if request.GET.get('name') is not None:
+                return StoreProfile.objects.filter(name__icontains=request.GET.get('name'))
+            elif request.GET.get('latitude') is not None and request.GET.get('longitude') is not None:
+                return self.store_search(latitude=request.GET.get('latitude'),
+                                         longitude=request.GET.get('longitude'))
+            return StoreProfile.objects.all()
         except StoreProfile.DoesNotExist:
             raise Http404
-        return queryset
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset(request)
         serializer = StoreListSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def store_search(self, latitude, longitude):
+        my_location = (float(latitude), float(longitude))
+        stores_nearby = StoreProfile.objects.filter(latitude__lt=latitude + 0.02,
+                                                    latitude__gt=latitude - 0.02,
+                                                    longitude__lt=longitude + 0.02,
+                                                    longitude__gt=longitude - 0.02)
+        if len(stores_nearby) <= 50:
+            return stores_nearby
+        else:
+            return heapq.nsmallest(50, stores_nearby,
+                                   key=lambda store: haversine((store.latitude, store.longitude), my_location))
+
+
 
 
 class StoreDetail(APIView):
