@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--This is sign page when store-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="260dp">
-
-<!--        to include image-->
-
-        <ImageView
+        <FrameLayout
+            android:id="@+id/default_frame_user"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:background="@drawable/store_black_bg" />
+            android:layout_height="260dp">
 
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center|center_horizontal|center_vertical"
-            android:background="@drawable/logo_red" />
+            <!--        to include image-->
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@drawable/store_black_bg" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:background="@drawable/logo_red" />
+
+        </FrameLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/default_frame_user">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/store_signup_email"
@@ -131,24 +131,22 @@
                 android:padding="12dp"
                 android:textColor="#000" />
 
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="bottom">
-                <Button
-                    android:id="@+id/store_signup_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ez_red"
-                    android:text="Sign Up"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp"/>
-            </RelativeLayout>
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom">
 
-    </ScrollView>
+            <Button
+                android:id="@+id/store_signup_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ez_red"
+                android:text="Sign Up"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+        </RelativeLayout>
+</RelativeLayout>
 
-</LinearLayout>
 
