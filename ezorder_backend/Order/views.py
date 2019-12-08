@@ -68,7 +68,7 @@ class OrderList(APIView):
                 waiting_orders.append(order)
 
         menus = [Menu.objects.get(id=int(menu['id'])) for menu in request.data['menus']]
-        result = max(menus, key=lambda menu: menu.expected_time)
+        result = max(menus, key=lambda menu: menu.expected_time).expected_time
 
         if len(waiting_orders) >= 5:
             result += sum(menu.expected_time for menu in menus)/len(menus)
