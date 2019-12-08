@@ -4,6 +4,7 @@ from User.models import UserProfile
 
 
 class Order(models.Model):
+    take_out = models.BooleanField(default=False)
     request = models.CharField(max_length=100, blank=True)
     done = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

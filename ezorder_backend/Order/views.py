@@ -47,7 +47,8 @@ class OrderList(APIView):
                                          store=store,
                                          user=request.user.user_profile,
                                          expected_time=self.get_excepted_time(request, store),
-                                         total_price=request.data['total_price'])
+                                         total_price=request.data['total_price'],
+                                         take_out=request.data['take_out'])
 
             menus = request.data['menus']
             for menu in menus:
@@ -72,7 +73,8 @@ class OrderList(APIView):
         result = max(menus, key=lambda menu: menu.expected_time).expected_time
 
         if len(waiting_orders) >= 5:
-            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus], datetime.timedelta()).total_seconds()/len(menus)))
+            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus],
+                                                      datetime.timedelta()).total_seconds()/len(menus)))
 
         return result
 

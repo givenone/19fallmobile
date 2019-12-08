@@ -21,7 +21,7 @@ class UserOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ('id', 'request', 'done', 'created', 'store_id',
-                  'store_name', 'menus', 'total_price', 'expected_time')
+                  'store_name', 'menus', 'total_price', 'expected_time', 'take_out')
 
 
 # Store 입장에서 보는 Order
@@ -33,6 +33,6 @@ class StoreOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ('id', 'request', 'done', 'created', 'user_nickname',
-                  'menus', 'total_price', 'store_name', 'expected_time')
+                  'menus', 'total_price', 'store_name', 'expected_time', 'take_out')
 
 
