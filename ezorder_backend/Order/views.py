@@ -62,7 +62,7 @@ class OrderList(APIView):
 
     def get_excepted_time(self, request, store):
         waiting_orders = []
-        orders = Order.objects.get(store=store)
+        orders = Order.objects.filter(store=store)
         for order in orders:
             if not order.done:
                 waiting_orders.append(order)
