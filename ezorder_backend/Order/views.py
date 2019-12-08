@@ -72,7 +72,7 @@ class OrderList(APIView):
         result = max(menus, key=lambda menu: menu.expected_time).expected_time
 
         if len(waiting_orders) >= 5:
-            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus], start=datetime.timedelta()).total_seconds()/len(menus)))
+            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus], datetime.timedelta()).total_seconds()/len(menus)))
 
         return result
 
