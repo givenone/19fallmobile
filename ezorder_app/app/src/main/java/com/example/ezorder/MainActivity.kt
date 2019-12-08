@@ -143,6 +143,7 @@ class MainActivity : AppCompatActivity() {
                 })
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
+                print(response)
                 if (testSuccess) {
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
