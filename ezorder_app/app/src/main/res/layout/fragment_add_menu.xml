@@ -169,24 +169,24 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="bottom">
-
-                <Button
-                    android:id="@+id/add_menu_cfm_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ez_red"
-                    android:text="CONFIRM"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp" />
-
-            </RelativeLayout>
-
         </LinearLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/add_menu_cfm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ez_red"
+            android:text="CONFIRM"
+            android:textColor="@android:color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

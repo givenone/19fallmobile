@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.ezorder.R
 import com.example.ezorder.whenorder
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 
 class SearchAdapter (val context: Context, val storelist: JSONArray, val itemClick: (Int) -> Unit) : BaseAdapter() {
@@ -27,6 +28,11 @@ class SearchAdapter (val context: Context, val storelist: JSONArray, val itemCli
         storeName.text = store.getString("name")
         storeInfo.text = store.getString("information")
 
+
+        try{
+            val url = store.getString("image")
+            if(url != null) Picasso.get().load(url).into(view.findViewById<ImageView>(R.id.menu_image))
+        }catch(e:Exception){}
         button.setOnClickListener {
 
             itemClick(store.getInt("id"))

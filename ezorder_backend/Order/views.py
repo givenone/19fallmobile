@@ -44,13 +44,14 @@ class OrderList(APIView):
 
     def post(self, request):
         try:
+            print(request.data)
             store = Menu.objects.get(id=int(request.data['menus'][0]['id'])).store
             order = Order.objects.create(request=request.data['request'],
                                          store=store,
                                          user=request.user.user_profile,
                                          expected_time=self.get_excepted_time(request, store),
                                          total_price=request.data['total_price'],
-                                         take_out=request.data['take_out'])
+                                         take_out=False)
 
             menus = request.data['menus']
             for menu in menus:

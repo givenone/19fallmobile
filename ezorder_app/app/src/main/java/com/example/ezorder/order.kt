@@ -29,6 +29,8 @@ class order : Fragment() {
                 val Adapter = ListOrderAdapter(
                 getActivity()!!.getApplicationContext(),
                 jsonArr
+
+                //send argument with order_id to fragment detail_order
             ) { order_id ->
                 val frag_03 = detail_order()
                 val bundle = Bundle()

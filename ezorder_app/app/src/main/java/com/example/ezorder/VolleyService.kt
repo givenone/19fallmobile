@@ -15,7 +15,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "http://192.168.0.17:8000/"
+    val testUrl = "http://172.30.23.5:8000/"
 
     fun GETVolley(context: Context, url : String, thetoken : String, res: (Boolean, String) -> Unit) {
 

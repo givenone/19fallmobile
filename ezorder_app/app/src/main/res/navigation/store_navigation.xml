@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/manage_orders"
-        android:name="com.example.ezorder.manage_orders"
+        android:name="com.example.ezorder.order_store"
         android:label="fragment_manage_orders"
         tools:layout="@layout/fragment_manage_orders" >
         <action

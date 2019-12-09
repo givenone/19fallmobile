@@ -32,17 +32,17 @@
                 android:layout_marginLeft="12dp"
                 app:srcCompat="@drawable/magnify" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_stores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:background="#00000000"
-                android:ems="10"
-                android:focusable="false"
+                android:ems="30"
                 android:hint="Search by outlet"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:textSize="14dp"  />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -74,11 +74,11 @@
     </LinearLayout>
 
     <ListView
-        android:layout_marginTop="100dp"
+        android:id="@+id/listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_title"
-        android:id="@+id/listview"/>
+        android:layout_marginTop="18dp" />
 
 
 </RelativeLayout>

@@ -6,6 +6,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import android.content.Intent
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 class MainStore : AppCompatActivity() {
@@ -23,7 +30,11 @@ class MainStore : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_store_home -> {
-                    finish()
+                    startActivity(
+                        Intent(applicationContext, MainActivity::class.java).setFlags(
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        )
+                    )
                     return@OnNavigationItemSelectedListener true
                 }
             }
