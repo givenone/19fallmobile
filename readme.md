@@ -22,8 +22,12 @@ Search can be based on current location, keyword based, or map based. Search for
 
 
 ## Contributor
+
 -Seo Junwon [Link to Github](https://github.com/givenone)
+
 -Han Wookje [Link to Github](https://github.com/wookjeHan)
+
 -Ahn Jaewon [Link to Github](https://github.com/haenah)
+
 -Park Yunbin [Link to Github](https://github.com/parkyunbin)
 
