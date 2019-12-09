@@ -31,7 +31,7 @@ class OrderList(APIView):
             expire_date = timezone.now() + timezone.timedelta(days=-30)
             Order.objects.filter(store=request.user.store_profile, done=True, created__lt=expire_date).delete()
             orders = Order.objects.filter(store=request.user.store_profile, done=False)
-            return sorted(orders, key=lambda order: order.expected_time + order.created)
+            return sorted(orders, key=lambda order: order.expected_time + order.created, reverse=True)
 
     def get(self, request):
         queryset = self.get_queryset(request)

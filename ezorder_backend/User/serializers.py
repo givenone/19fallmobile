@@ -7,14 +7,12 @@ from django.contrib.auth.hashers import make_password
 
 class SignUpSerializer(serializers.ModelSerializer):
     # field for user
-    nickname = serializers.CharField(source='user_profile.nickname')
-
+    nickname = serializers.CharField()
     # field for store
-    name = serializers.CharField(source='store_profile.name')
-    information = serializers.CharField(source='store_profile.information')
-    latitude = serializers.FloatField(source='store_profile.latitude')
-    longitude = serializers.FloatField(source='store_profile.longitude')
-
+    name = serializers.CharField()
+    information = serializers.CharField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email', 'password', 'isStore', 'phone', 'nickname',
