@@ -101,11 +101,15 @@ class ManageOrderAdapter(val context: Context, val orderlist: JSONArray, val ite
         for(i in 0 until menu.length())
         {
             val t = menu.getJSONObject(i)
-            menutext += "${t.getString("menu_name")} : ${t.getString("quantity")} \n ${t.getString("option")}\n"
+            menutext += "${t.getString("menu_name")} : ${t.getString("quantity")}\n"
+            val x = t.getJSONArray("option")
+            for(j in 0 until x.length()){
+                menutext += "${x.getJSONObject(j).getString("text")} : ${x.getJSONObject(j).getString("choice")}\n"
+            }
         }
         menuName.text = menutext
 
-        //TODO:: menuExpectedTime.text="Expected Time: "+menu.getString("expected_time")
+        menuExpectedTime.text="Expected Time: "+order.getString("expected_time")
 
 
         return view

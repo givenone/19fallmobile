@@ -6,8 +6,8 @@ class StoreProfile(models.Model):
     user = models.OneToOneField(CustomUser, related_name='store_profile', on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=30)
     information = models.TextField(max_length=200)
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(default=0)
+    longitude = models.FloatField(default=0)
 
 
 class Menu(models.Model):

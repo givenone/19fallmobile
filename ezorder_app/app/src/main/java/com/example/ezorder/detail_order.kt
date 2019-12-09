@@ -27,11 +27,7 @@ class detail_order : Fragment() {
         var arguid=-1
         if(arguments!!.getInt("order_id")!=null){
             arguid = arguments!!.getInt("order_id")
-            Toast.makeText(
-                getActivity()!!.getApplicationContext(),
-                "Hey Guy {$arguid}",
-                Toast.LENGTH_SHORT
-            ).show()
+
         }
         else{
             Toast.makeText(
@@ -72,9 +68,9 @@ class detail_order : Fragment() {
                 textWhenCreated.text = parts[0]+"\t"+times[0]+":"+times[1]
 
 
-                textTakeOut.text = "TakeOut: unImplemented TODO"
-                textRequest.text = json.getString("request")
-                textEstimateTime.text = "estimated Time: unImplemented TODO"
+                textTakeOut.text = "TakeOut"
+                textRequest.text = "Request : "+json.getString("request")
+                textEstimateTime.text = "Expected Time : "+json.getString("expected_time")
                 if (json.getBoolean("done")) {
                     textIsDone.text = "Done"
                 } else {
@@ -88,11 +84,7 @@ class detail_order : Fragment() {
                 listview.adapter = Adapter
             }
             else {
-                Toast.makeText(
-                    getActivity()!!.getApplicationContext(),
-                    "Test Fail {$order_id}",
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
         }
         return view

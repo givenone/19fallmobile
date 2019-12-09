@@ -46,8 +46,6 @@ class MainActivity : AppCompatActivity() {
                 val name = account.familyName + account.givenName
                 val nickname = account.displayName
 
-                Toast.makeText(this, " You Checked :" + " ${account!!.idToken} + $email + $name"
-                    , Toast.LENGTH_SHORT).show()
                 val params = HashMap<String, String>()
                 params["username"] = email.toString()
                 params["password"] = nickname.toString()
@@ -61,8 +59,6 @@ class MainActivity : AppCompatActivity() {
                         // Get new Instance ID token
                         val token = task.result?.token
                         params.put("token", token!!)
-                        // Log and toast
-                        //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
                     })
 
                 VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
@@ -138,11 +134,10 @@ class MainActivity : AppCompatActivity() {
                     // Get new Instance ID token
                     val token = task.result?.token
                     params.put("token", token!!)
-                    // Log and toast
-                    //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
                 })
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
+                print(response)
                 if (testSuccess) {
 
                     VolleyService.token = JSONObject(response).getString("token") // get token

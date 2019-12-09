@@ -20,11 +20,17 @@ class detail_orderAdapter (val context: Context, val menulist: JSONArray) : Base
 
         val menuName = view.findViewById<TextView>(R.id.listview_detail_order_menuname)
         val menuQuantity = view.findViewById<TextView>(R.id.listview_detail_order_quantity)
-//        val menuOption=view.findViewById<TextView>(R.id.listview_storemenu_options)
+        val menuOption=view.findViewById<TextView>(R.id.listview_storemenu_options)
         val menu = menulist.getJSONObject(position)
         menuName.text = menu.getString("menu_name")
         menuQuantity.text="Amount: "+menu.getInt("quantity").toString()
-//        menuOption.text=menu.getString("option")
+        var optionString:String=""
+        val optionArray=menu.getJSONArray("option")
+        for(i in 0 until optionArray.length()){
+            val item = optionArray.getJSONObject(i)
+            optionString=optionString+item.getString("text")+" -> "+item.getString("choice")+"\n"
+        }
+        menuOption.text=optionString
 
         return view
     }

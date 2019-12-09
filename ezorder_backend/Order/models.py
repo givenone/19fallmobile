@@ -4,12 +4,14 @@ from User.models import UserProfile
 
 
 class Order(models.Model):
+    take_out = models.BooleanField(default=False)
     request = models.CharField(max_length=100, blank=True)
     done = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    store = models.ForeignKey(StoreProfile, on_delete=models.CASCADE)
+    store = models.ForeignKey(StoreProfile, related_name='orders', on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     total_price = models.IntegerField()
+    expected_time = models.DurationField(null=True)
 
     class Meta:
         ordering = ['-created']

@@ -58,14 +58,14 @@ class search : Fragment() {
                 listview.adapter = Adapter
 
             } else {
-                Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
             }
         }
 
         val search_button = view.findViewById<ImageButton>(R.id.search_button)
         val text = view.findViewById<TextInputEditText>(R.id.search_stores)
         search_button.setOnClickListener {
-            VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store?name=${text.text.toString()}/", VolleyService.token) { testSuccess, response ->
+            VolleyService.GETVolley(getActivity()!!.getApplicationContext(), "store?name=${text.text.toString()}", VolleyService.token) { testSuccess, response ->
                 if (testSuccess) {
                     val jsonArr: JSONArray = JSONArray(response)
 
@@ -86,7 +86,7 @@ class search : Fragment() {
                     listview.adapter = Adapter
 
                 } else {
-                    Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                    //Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -144,7 +144,9 @@ class search : Fragment() {
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             VolleyService.GETVolley(getActivity()!!.getApplicationContext(),
-                "store?longitude=${location.longitude}&latitude=${location.latitude}", VolleyService.token) { testSuccess, response ->
+                "store?latitude=126.9258400797844&longitude=37.52758330340982"
+                /*"store?latitude=${location.latitude}&longitude=${location.longitude}"*/
+                , VolleyService.token) { testSuccess, response ->
                 if (testSuccess) {
                     val jsonArr: JSONArray = JSONArray(response)
 
@@ -165,7 +167,7 @@ class search : Fragment() {
                     listview.adapter = Adapter
 
                 } else {
-                    Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
+                 //   Toast.makeText(getActivity()!!.getApplicationContext(), response, Toast.LENGTH_LONG).show()
                 }
             }
         }

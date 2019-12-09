@@ -10,6 +10,7 @@ from .serializers import UserProfileSerializer, SignUpSerializer
 from Store.serializers import StoreProfileSerializer
 from .models import CustomUser
 
+
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -58,22 +59,14 @@ class UserDetail(APIView):
             user = CustomUser.objects.get(pk=request.user.id)
         except CustomUser.DoesNotExist:
             return Response({"message": "does not found."}, status=status.HTTP_404_NOT_FOUND)
-        print("ok 1")
-
         data['username'] = data.get('username', user.username)
-        print("ok 1")
-
         data['email'] = data.get('email', user.email)
-
-        print("ok 1")
-
         raw_password = data.get('password', '')
         data['password'] = make_password(raw_password) if raw_password != '' else user.password
         data['isStore'] = user.isStore
         data['phone'] = data.get('phone', user.phone)
 
-        
-        serializer = SignUpSerializer(user, data=data)
+        serializer = SignUpSerializer(user, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

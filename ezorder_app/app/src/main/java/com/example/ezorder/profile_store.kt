@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile_store.view.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
 import org.json.JSONObject
@@ -29,7 +31,13 @@ class profile_store : Fragment() {
 
                 id = jsonObj.getInt("id")
 
-                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("username")
+                try{
+                    val url = jsonObj.getString("image")
+                    if(url != null) Picasso.get().load(url).into(view.findViewById<ImageView>(R.id.store_cover_image))
+                }catch(e:Exception){}
+
+                view.findViewById<TextView>(R.id.store_name_text).text = "store name : " + jsonObj.getString("name")
+                view.findViewById<TextView>(R.id.store_username_text).text = "user name : " + jsonObj.getString("username")
                 view.findViewById<TextView>(R.id.store_email_text).text = "store name : " + jsonObj.getString("email")
                 view.findViewById<TextView>(R.id.store_phone_number_text).text = "Contact : " + jsonObj.getString("phone")
                 view.findViewById<TextView>(R.id.store_text).text = "Info : " + jsonObj.getString("information")

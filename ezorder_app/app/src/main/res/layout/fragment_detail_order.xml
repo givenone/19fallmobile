@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="18dp"
-        android:paddingBottom="18dp">
+        android:paddingBottom="18dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/detail_order_storename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FFFFFF"
+            android:text="Store Name"
             android:textAlignment="center"
             android:textColor="@color/ez_red"
             android:textSize="26sp" />
@@ -28,54 +29,76 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_order_title"
-        android:layout_margin="20dp"
         android:background="@drawable/rounded"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/detail_order_created"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Created : "
-            android:textColor="@android:color/black"
-            android:textSize="14dp" />
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/detail_order_takeout"
+            <TextView
+                android:id="@+id/detail_order_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created : "
+                android:textColor="@android:color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/detail_order_takeout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Takeout : "
+                android:textColor="@android:color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/detail_order_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requests : "
+                android:textColor="@android:color/black"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/detail_order_estimatedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimated time left : "
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Takeout : "
-            android:textColor="@android:color/black"
-            android:textSize="14dp" />
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/detail_order_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Requests : "
-            android:textColor="@android:color/black"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/detail_order_estimatedTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estimated time left : "
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/detail_order_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DONE" />
-
+            <TextView
+                android:id="@+id/detail_order_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DONE"
+                android:textSize="18dp"
+                android:layout_gravity="right"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/detail_order_listview"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detail_order_info"/>
+        android:orientation="vertical"
+        android:layout_below="@+id/detail_order_info">
+        <ListView
+            android:id="@+id/detail_order_listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 from rest_framework import (permissions, status)
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import datetime
 
 from  django.utils import timezone
 
@@ -23,12 +24,14 @@ class OrderList(APIView):
     def get_queryset(self, request):
         if not request.user.isStore:
             expire_date = timezone.now() + timezone.timedelta(days=-30)
-            Order.objects.filter(user = request.user.user_profile, done=True, created__lt=expire_date).delete()
+            Order.objects.filter(user=request.user.user_profile, done=True, created__lt=expire_date).delete()
             return Order.objects.filter(user=request.user.user_profile)
         else:
+            # TODO: 여기를 잘 건드려야겠구만.
             expire_date = timezone.now() + timezone.timedelta(days=-30)
             Order.objects.filter(store=request.user.store_profile, done=True, created__lt=expire_date).delete()
-            return Order.objects.filter(store=request.user.store_profile)
+            orders = Order.objects.filter(store=request.user.store_profile, done=False)
+            return sorted(orders, key=lambda order: order.expected_time + order.created)
 
     def get(self, request):
         queryset = self.get_queryset(request)
@@ -40,17 +43,15 @@ class OrderList(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        """
-        :param request: {request : ~, total_price: 15000 menus: [{id:menu_id, quantity:3, option:json}]}
-        :return:
-        """
-
         try:
+            print(request.data)
             store = Menu.objects.get(id=int(request.data['menus'][0]['id'])).store
             order = Order.objects.create(request=request.data['request'],
                                          store=store,
                                          user=request.user.user_profile,
-                                         total_price=request.data['total_price'])
+                                         expected_time=self.get_excepted_time(request, store),
+                                         total_price=request.data['total_price'],
+                                         take_out=False)
 
             menus = request.data['menus']
             for menu in menus:
@@ -63,6 +64,25 @@ class OrderList(APIView):
             return Response(UserOrderSerializer(order).data, status=status.HTTP_201_CREATED)
         except KeyError:
             return Response({'message': 'Please Check request field!'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_excepted_time(self, request, store):
+        waiting_orders = []
+        orders = Order.objects.filter(store=store)
+        for order in orders:
+            if not order.done:
+                waiting_orders.append(order)
+
+        menus = [Menu.objects.get(id=int(menu['id'])) for menu in request.data['menus']]
+        result = max(menus, key=lambda menu: menu.expected_time).expected_time
+
+        if len(waiting_orders) >= 5:
+            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus],
+                                                      datetime.timedelta()).total_seconds()/len(menus)))
+
+        return result
+
+    def early(self, lhs, rhs):
+        return (lhs.expected_time + lhs.created) < (rhs.expected_time + rhs.created)
 
 
 class OrderDetail(APIView):
@@ -89,6 +109,5 @@ class OrderDetail(APIView):
         order = self.get_object(pk)
         order.done = True
         order.save()
-        send_fcm_notification(order.user.user.token, 'Order done!', f'Your order from {order.store.name} has been done.')
 
         return Response(data=StoreOrderSerializer(order).data, status=status.HTTP_200_OK)
