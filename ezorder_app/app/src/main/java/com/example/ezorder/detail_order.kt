@@ -15,12 +15,15 @@ import org.json.JSONObject
 /**
  * A simple [Fragment] subclass.
  */
+
+//when user click detail in order List
 class detail_order : Fragment() {
     @ExperimentalStdlibApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //getting argument from order
         var arguid=-1
         if(arguments!!.getInt("order_id")!=null){
             arguid = arguments!!.getInt("order_id")
@@ -57,6 +60,7 @@ class detail_order : Fragment() {
                 textStoreName.text = json.getString("store_name")
 
 
+
                 //parsing created to show more prettier.
                 var textCreated=json.getString("created")
                 var delimeter="T"
@@ -69,8 +73,8 @@ class detail_order : Fragment() {
 
 
                 textTakeOut.text = "TakeOut: unImplemented TODO"
-                textRequest.text = json.getString("request")
-                textEstimateTime.text = "estimated Time: unImplemented TODO"
+                textRequest.text = "Request : "+json.getString("request")
+                textEstimateTime.text = "Expected Time : "+json.getString("expected_time")
                 if (json.getBoolean("done")) {
                     textIsDone.text = "Done"
                 } else {

@@ -26,7 +26,7 @@
         android:id="@+id/manage_orders"
         android:name="com.example.ezorder.order_store"
         android:label="fragment_manage_orders"
-        tools:layout="@layout/fragment_order_store" >
+        tools:layout="@layout/fragment_manage_orders" >
         <action
             android:id="@+id/action_manage_orders_to_profile_store"
             app:destination="@id/profile_store" />

@@ -77,7 +77,7 @@
                 android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/email_text"
+                android:id="@+id/store_email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

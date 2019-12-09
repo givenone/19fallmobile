@@ -15,7 +15,7 @@ import org.json.JSONObject
 
 object VolleyService {
     var token = ""
-    val testUrl = "http://192.168.56.1:8000/"
+    val testUrl = "http://18.188.73.43:8000/"
 
     fun GETVolley(context: Context, url : String, thetoken : String, res: (Boolean, String) -> Unit) {
 
@@ -53,8 +53,6 @@ object VolleyService {
                 // TODO :: what is needed?
                 return parameterList
             }
-            // getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.
-            // getBody에서는 요청에 JSON이나 String이 아닌 ByteArray가 필요하므로, 타입을 변경한다.
         }
         Volley.newRequestQueue(context).add(testRequest)
     }
@@ -85,7 +83,7 @@ object VolleyService {
     }
 
 
-    fun PUTVolley(context: Context, url : String, parameterList : HashMap<String, String>, res: (Boolean, String) -> Unit) {
+    fun PUTVolley(context: Context, url : String, parameterList : HashMap<String, String>?, res: (Boolean, String) -> Unit) {
 
 
         val testRequest = object : StringRequest(Method.PUT, testUrl + url , Response.Listener { response ->
@@ -103,7 +101,7 @@ object VolleyService {
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
                 // TODO :: what is needed?
-                return parameterList
+                return parameterList!!
             }
         }
 

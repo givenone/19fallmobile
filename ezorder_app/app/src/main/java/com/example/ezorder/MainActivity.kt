@@ -13,16 +13,21 @@ import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.iid.FirebaseInstanceId
 
 
 class MainActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN  = 1998
 
+    @ExperimentalStdlibApi
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
@@ -36,8 +41,51 @@ class MainActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 val cred = GoogleAuthProvider.getCredential(account!!.idToken,null)
 
-                Toast.makeText(this, " You Checked :" + " ${account!!.idToken}"
-                        , Toast.LENGTH_SHORT).show()
+
+                val email = account.email
+                val name = account.familyName + account.givenName
+                val nickname = account.displayName
+
+                Toast.makeText(this, " You Checked :" + " ${account!!.idToken} + $email + $name"
+                    , Toast.LENGTH_SHORT).show()
+                val params = HashMap<String, String>()
+                params["username"] = email.toString()
+                params["password"] = nickname.toString()
+                // Firebase ID
+                FirebaseInstanceId.getInstance().instanceId
+                    .addOnCompleteListener(OnCompleteListener { task ->
+                        if (!task.isSuccessful) {
+                            return@OnCompleteListener
+                        }
+
+                        // Get new Instance ID token
+                        val token = task.result?.token
+                        params.put("token", token!!)
+                        // Log and toast
+                        //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                    })
+
+                VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
+                    if (testSuccess) {
+
+                        VolleyService.token = JSONObject(response).getString("token") // get token
+
+                        if(!JSONObject(response).getBoolean("isStore"))
+                        {// if user
+                            val nextIntent = Intent(this@MainActivity, MainUser::class.java)
+                            //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            startActivity(nextIntent)
+                        }
+                        else
+                        {// if store
+                            val nextIntent = Intent(this@MainActivity, MainStore::class.java)
+                            //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            startActivity(nextIntent)
+                        }
+                    } else {
+                        Toast.makeText(this, response, Toast.LENGTH_LONG).show()
+                    }
+                }
 
             }
             catch (e: Exception){
@@ -64,7 +112,7 @@ class MainActivity : AppCompatActivity() {
 
         val google = findViewById<SignInButton>(R.id.sign_in_button)
         google.setOnClickListener{
-            val signInIntent = mGoogleSignInClient.getSignInIntent()
+                val signInIntent = mGoogleSignInClient.getSignInIntent()
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
@@ -80,8 +128,22 @@ class MainActivity : AppCompatActivity() {
             val params = HashMap<String, String>()
             params["username"] = email.text.toString()
             params["password"] = password.text.toString()
+            // Firebase ID
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+                    params.put("token", token!!)
+                    // Log and toast
+                    //Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+                })
 
             VolleyService.POSTVolley(this, "user/login/", params) { testSuccess, response ->
+                print(response)
                 if (testSuccess) {
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
@@ -89,20 +151,19 @@ class MainActivity : AppCompatActivity() {
                     if(!JSONObject(response).getBoolean("isStore"))
                     {// if user
                         val nextIntent = Intent(this@MainActivity, MainUser::class.java)
-                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                        //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
                         startActivity(nextIntent)
                     }
-//                    else
-//                    {// if store
-//                        val nextIntent = Intent(this@MainActivity, MainStore::class.java)
-//                        nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
-//                        startActivity(nextIntent)
-//                    }
+                    else
+                    {// if store
+                        val nextIntent = Intent(this@MainActivity, MainStore::class.java)
+                        //nextIntent.setFlags(nextIntent.getFlags() or Intent.FLAG_ACTIVITY_NO_HISTORY)
+                        startActivity(nextIntent)
+                    }
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
-    //// TODO 화면전환 및 백엔드와의 request 통신 결과 띄우기
 }

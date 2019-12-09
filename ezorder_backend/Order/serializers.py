@@ -1,27 +1,36 @@
 from rest_framework import serializers
-from .models import Order
+from .models import Order, OrderMenu
+from Store.serializers import OptionField
+
+
+class OrderMenuSerializer(serializers.ModelSerializer):
+    menu_name = serializers.ReadOnlyField(source='menu.name')
+    option = OptionField()
+
+    class Meta:
+        model = OrderMenu
+        fields = ('id', 'menu_name', 'quantity', 'option')
 
 
 # User 입장에서 보는 Order
 class UserOrderSerializer(serializers.ModelSerializer):
-    store = serializers.ReadOnlyField(source='store.name')
-    menu_name = serializers.ReadOnlyField(source='menu.name')
-    menu_picture = serializers.ImageField(use_url=True, source='menu.picture', allow_null=True)
-    expected_time = serializers.ReadOnlyField(source='menu.expected_time')
-    # FIXME: JSONField 좀 못미덥다.
-    option = serializers.JSONField()
+    store_id = serializers.ReadOnlyField(source='store.id')
+    store_name = serializers.ReadOnlyField(source='store.name')
+    menus = OrderMenuSerializer(many=True)
 
     class Meta:
         model = Order
-        fields = ('id', 'store', 'menu_picture', 'created', 'expected_time', 'option')
+        fields = ('id', 'request', 'done', 'created', 'store_id', 'store_name', 'menus', 'total_price')
 
 
 # Store 입장에서 보는 Order
 class StoreOrderSerializer(serializers.ModelSerializer):
     user_nickname = serializers.ReadOnlyField(source='user.nickname')
-    menu_name = serializers.ReadOnlyField(source='menu.name')
-    expected_time = serializers.ReadOnlyField(source='menu.expected_time')
+    menus = OrderMenuSerializer(many=True)
+    store_name = serializers.ReadOnlyField(source='store.name')
 
     class Meta:
         model = Order
-        fields = ('id', 'user_nickname', 'menu_name', 'created', 'expected_time')
+        fields = ('id', 'request', 'done', 'created', 'user_nickname', 'menus', 'total_price', 'store_name')
+
+
