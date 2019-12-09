@@ -20,6 +20,10 @@ Search can be based on current location, keyword based, or map based. Search for
 - Menu
 - Order
 
+1. Change 'url' in VolleyService.kt to your server address
+2. python manage.py runserver <url>
+3. run app 
+
 
 ## Contributor
 
