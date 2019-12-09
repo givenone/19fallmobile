@@ -34,8 +34,8 @@ import kotlin.collections.HashMap
 class whenorder :  Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         var arguid=-1
         if(arguments!!.getInt("store_id")!=null){
@@ -104,7 +104,6 @@ class whenorder :  Fragment() {
                     //post to order database
                     VolleyService.DATA_POSTVolley(getActivity()!!.getApplicationContext(), "order/" ,params) { testSuccess, response ->
                         if (testSuccess) {
-                            Toast.makeText(getActivity()!!.getApplicationContext(), "order success !", Toast.LENGTH_LONG).show()
                             val transaction = fragmentManager!!.beginTransaction()
                             transaction.replace(R.id.user_container, order.newInstance())
                             transaction.addToBackStack(null)
@@ -117,8 +116,8 @@ class whenorder :  Fragment() {
                 val jsonArr: JSONArray = JSONObject(response).getJSONArray("menus")
                 //order Adapter
                 val Adapter = OrderAdapter(
-                        getActivity()!!.getApplicationContext(),
-                        jsonArr
+                    getActivity()!!.getApplicationContext(),
+                    jsonArr
                 ) { menu_id ->
                     var delimeter = "\t"
                     //parts[0] = id parts[1]=name parts[2]=price
@@ -154,16 +153,16 @@ class whenorder :  Fragment() {
                                 Log.d("option seems like",optionResponse.toString())
 
                                 val Adapter2 = optionAdapter(
-                                        getActivity()!!.getApplicationContext(),
-                                        optionResponse
+                                    getActivity()!!.getApplicationContext(),
+                                    optionResponse
                                 )
                                 listviewForOption.adapter=Adapter2
                             }
                             else{
                                 Toast.makeText(
-                                        getActivity()!!.getApplicationContext(),
-                                        "TestFailed {$id}",
-                                        Toast.LENGTH_SHORT
+                                    getActivity()!!.getApplicationContext(),
+                                    "TestFailed {$id}",
+                                    Toast.LENGTH_SHORT
                                 ).show()
                             }
                         }
@@ -217,9 +216,9 @@ class whenorder :  Fragment() {
             }
             else {
                 Toast.makeText(
-                        getActivity()!!.getApplicationContext(),
-                        "Test Fail {$storeid}",
-                        Toast.LENGTH_SHORT
+                    getActivity()!!.getApplicationContext(),
+                    "Test Fail {$storeid}",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }

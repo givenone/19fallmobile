@@ -83,10 +83,7 @@ class Store_location : FragmentActivity(), OnMapReadyCallback {
         // 버튼 이벤트
         button!!.setOnClickListener {
             val str = editText!!.text.toString()
-            Toast.makeText(
-                this@Store_location,
-                str, Toast.LENGTH_SHORT
-            ).show()
+
             var addressList:List<Address>? = null
             try {
                 // editText에 입력한 텍스트(주소, 지역, 장소 등)을 지오 코딩을 이용해 변환

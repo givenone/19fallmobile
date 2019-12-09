@@ -51,13 +51,11 @@ class UserSign : AppCompatActivity() {
                     // Get new Instance ID token
                     val token = task.result?.token
                     params.put("token", token!!)
-                    // Log and toast
-                    Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+
                 })
 
             VolleyService.POSTVolley(this, "user/signup/", params) { testSuccess, response ->
                 if (testSuccess) {
-                    //Toast.makeText(this, response, Toast.LENGTH_LONG).show()
 
                     VolleyService.token = JSONObject(response).getString("token") // get token
 

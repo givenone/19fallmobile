@@ -66,30 +66,17 @@
 
             </RadioGroup>
 
+            <Button
+                android:id="@+id/SU_submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ez_red"
+                android:text="Next"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/SU_submit_button_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="bottom">
 
-        <Button
-            android:id="@+id/SU_submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/ez_red"
-            android:text="Next"
-            android:textColor="@android:color/white"
-            android:textSize="18dp" />
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/SU_submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next" />
 
 </LinearLayout>

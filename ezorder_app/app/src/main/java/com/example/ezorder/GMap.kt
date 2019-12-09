@@ -162,7 +162,8 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
         mMap!!.setOnMarkerClickListener(markerClickListener)
 
         // 카메라를 위치로 옮긴다.
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.52487, 126.92723), 16f))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(
+            LatLng(37.52758330340982, 126.9258400797844), 16f))
     }
 
     private val locationListener: LocationListener = object : LocationListener {
@@ -172,7 +173,9 @@ class GMap : FragmentActivity(), OnMapReadyCallback {
             //oneMarker(lat, long)
 
             VolleyService.GETVolley(this@GMap,
-                "store/"/*?longitude=${location.longitude}&latitude=${location.latitude}"*/, VolleyService.token) { testSuccess, response ->
+                /*"store?latitude=${location.latitude}&longitude=${location.longitude}"*/
+                "store?latitude=126.9258400797844&longitude=37.52758330340982"
+                , VolleyService.token) { testSuccess, response ->
                 if (testSuccess) {
                     val jsonArr: JSONArray = JSONArray(response)
                     manyMarker(jsonArr)

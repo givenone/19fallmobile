@@ -3,6 +3,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ezorder.R
@@ -10,6 +11,7 @@ import com.example.ezorder.VolleyService
 import com.example.ezorder.edit_my_store
 import com.example.ezorder.edit_my_user
 import com.google.android.material.textfield.TextInputEditText
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile_store.view.*
 import org.json.JSONObject
@@ -29,6 +31,10 @@ class profile : Fragment() {
             if (testSuccess) {
 
                 val jsonObj: JSONObject = JSONObject(response)
+                try{
+                    val url = jsonObj.getString("image")
+                    if(url != null) Picasso.get().load(url).into(view.findViewById<ImageView>(R.id.user_cover_image))
+                }catch(e:Exception){}
 
                 view.findViewById<TextView>(R.id.user_username_text).text = "username : " + jsonObj.getString("username")
                 view.findViewById<TextView>(R.id.user_email_text).text = "email : " + jsonObj.getString("email")

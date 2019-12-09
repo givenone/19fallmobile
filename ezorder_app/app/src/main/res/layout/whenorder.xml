@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
-    android:orientation="vertical"
-    tools:context=".user_order">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/menu_edit_title"
+
+    <Button
+        android:id="@+id/orderButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="60dp"
         android:text="Order"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,54 +35,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
     <ListView
         android:id="@+id/listview_whenorder"
-        android:layout_width="wrap_content"
+        android:layout_width="333dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/menu_edit_title"
-        android:layout_weight="0.75"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    안재가 보내준 레이아웃대로 짰던 레이아웃-->
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="3dp"-->
-<!--        android:background="@android:color/darker_gray"/>-->
-
-<!--    <ListView-->
-<!--        android:id="@+id/user_order_summary_listview"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/listview_whenorder"-->
-<!--        android:layout_above="@+id/user_order_button_layout"-->
-<!--        android:layout_weight="1"/>-->
-
-    <LinearLayout
-        android:id="@+id/user_order_button_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:layout_margin="20dp">
-
-        <TextView
-            android:id="@+id/whenorder_totalPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Total Price : "
-            android:textSize="18dp"/>
-
-        <Button
-            android:id="@+id/orderButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/ez_red"
-            android:text="Order "
-            android:textColor="@android:color/white"
-            android:textSize="18dp" />
-
-    </LinearLayout>
-
-</LinearLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>

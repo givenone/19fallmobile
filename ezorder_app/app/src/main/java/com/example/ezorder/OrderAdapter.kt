@@ -10,6 +10,7 @@ import com.example.ezorder.R
 import com.example.ezorder.whenorder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -30,6 +31,12 @@ class OrderAdapter (val context: Context, val menulist: JSONArray, val itemClick
         val menuButton=view.findViewById<Button>(R.id.listview_whenorder_button)
         val menuButton2=view.findViewById<Button>(R.id.listview_whenorder_button2)
         val menu = menulist.getJSONObject(position)
+
+
+        try{
+            val url = menu.getString("image")
+            if(url != null) Picasso.get().load(url).into(view.findViewById<ImageView>(R.id.listview_whenorder_menuimage))
+        }catch(e:Exception){}
 
         menuName.text = menu.getString("name")
         menuExpectedTime.text="Expected Time: "+menu.getString("expected_time")

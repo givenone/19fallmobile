@@ -26,7 +26,7 @@ class optionAdapter(val context: Context, val optionlist: JSONArray) : BaseAdapt
         for(i in parts){
             val radioButt= RadioButton(context)
             radioButt.id=View.generateViewId()
-            radioButt.setText(i)
+            radioButt.text = i
             radioGroup.addView(radioButt)
         }
 

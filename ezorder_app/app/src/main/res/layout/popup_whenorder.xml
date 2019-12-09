@@ -4,27 +4,26 @@
     android:layout_width="300dp"
     android:layout_height="650dp"
     android:layout_gravity="center"
-    android:background="@drawable/rounded_corner_input_text">
+    android:background="@color/cardview_dark_background">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/popup_whenorder_menuName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="Chicken Noodle Soup"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        android:background="@color/cardview_light_background"/>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_margin="20dp"
         android:src="@drawable/menu_img_sample" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical">
 
         <TextView
@@ -32,12 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Options : "
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:background="@color/cardview_light_background"/>
 
         <ListView
             android:id="@+id/popup_options"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp">
 
         </ListView>
 
@@ -55,7 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Requests : "
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:background="@color/cardview_light_background"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/popup_whenorder_request"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="30dp"
                     android:layout_margin="15dp"
                     android:background="@android:color/transparent"
                     android:hint="Ex) No vegetables"
@@ -93,7 +93,6 @@
                 android:backgroundTint="@color/ez_red"
                 android:src="@drawable/ic_plus_white" />
         </LinearLayout>
-
     </ScrollView>
 
 

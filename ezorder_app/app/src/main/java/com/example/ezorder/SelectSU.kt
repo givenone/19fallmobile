@@ -19,9 +19,6 @@ class SelectSU : AppCompatActivity() {
         SU.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val radio: RadioButton = findViewById(checkedId)
-                //Toast.makeText(applicationContext," You Checked :"+
-                  //      " ${radio.text}",
-                   // Toast.LENGTH_SHORT).show()
             })
 
 
