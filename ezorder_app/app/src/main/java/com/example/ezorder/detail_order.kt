@@ -73,8 +73,8 @@ class detail_order : Fragment() {
 
 
                 textTakeOut.text = "TakeOut: unImplemented TODO"
-                textRequest.text = json.getString("request")
-                textEstimateTime.text = "estimated Time: unImplemented TODO"
+                textRequest.text = "Request : "+json.getString("request")
+                textEstimateTime.text = "Expected Time : "+json.getString("expected_time")
                 if (json.getBoolean("done")) {
                     textIsDone.text = "Done"
                 } else {

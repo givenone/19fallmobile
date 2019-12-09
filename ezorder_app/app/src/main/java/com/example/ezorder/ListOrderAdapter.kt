@@ -38,8 +38,7 @@ class ListOrderAdapter (val context: Context, val orderList: JSONArray, val item
         //times[0]=hour times[1]=min
         val times=parts[1].split(delimeter)
         created.text = parts[0]+"\t"+times[0]+":"+times[1]
-        //TODO implement Expected Time have to talk with JaeWon Ahn
-        expectedTime.text="Expected Time : not yet implemented"
+        expectedTime.text=order.getString("expected_time")
 
         //If order is done turn color to gray
         if(order.getBoolean("done")){
