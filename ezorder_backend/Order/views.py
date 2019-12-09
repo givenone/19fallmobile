@@ -1,6 +1,7 @@
 from rest_framework import (permissions, status)
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import datetime
 
 from  django.utils import timezone
 
@@ -40,17 +41,14 @@ class OrderList(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        """
-        :param request: {request : ~, total_price: 15000 menus: [{id:menu_id, quantity:3, option:json}]}
-        :return:
-        """
-
         try:
             store = Menu.objects.get(id=int(request.data['menus'][0]['id'])).store
             order = Order.objects.create(request=request.data['request'],
                                          store=store,
                                          user=request.user.user_profile,
-                                         total_price=request.data['total_price'])
+                                         expected_time=self.get_excepted_time(request, store),
+                                         total_price=request.data['total_price'],
+                                         take_out=request.data['take_out'])
 
             menus = request.data['menus']
             for menu in menus:
@@ -63,6 +61,22 @@ class OrderList(APIView):
             return Response(UserOrderSerializer(order).data, status=status.HTTP_201_CREATED)
         except KeyError:
             return Response({'message': 'Please Check request field!'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_excepted_time(self, request, store):
+        waiting_orders = []
+        orders = Order.objects.filter(store=store)
+        for order in orders:
+            if not order.done:
+                waiting_orders.append(order)
+
+        menus = [Menu.objects.get(id=int(menu['id'])) for menu in request.data['menus']]
+        result = max(menus, key=lambda menu: menu.expected_time).expected_time
+
+        if len(waiting_orders) >= 5:
+            result += datetime.timedelta(seconds=(sum([menu.expected_time for menu in menus],
+                                                      datetime.timedelta()).total_seconds()/len(menus)))
+
+        return result
 
 
 class OrderDetail(APIView):
@@ -89,6 +103,5 @@ class OrderDetail(APIView):
         order = self.get_object(pk)
         order.done = True
         order.save()
-        send_fcm_notification(order.user.user.token, 'Order done!', f'Your order from {order.store.name} has been done.')
 
         return Response(data=StoreOrderSerializer(order).data, status=status.HTTP_200_OK)
