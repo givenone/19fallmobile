@@ -24,12 +24,14 @@ class OrderList(APIView):
     def get_queryset(self, request):
         if not request.user.isStore:
             expire_date = timezone.now() + timezone.timedelta(days=-30)
-            Order.objects.filter(user = request.user.user_profile, done=True, created__lt=expire_date).delete()
+            Order.objects.filter(user=request.user.user_profile, done=True, created__lt=expire_date).delete()
             return Order.objects.filter(user=request.user.user_profile)
         else:
+            # TODO: 여기를 잘 건드려야겠구만.
             expire_date = timezone.now() + timezone.timedelta(days=-30)
             Order.objects.filter(store=request.user.store_profile, done=True, created__lt=expire_date).delete()
-            return Order.objects.filter(store=request.user.store_profile)
+            orders = Order.objects.filter(store=request.user.store_profile, done=False)
+            return sorted(orders, key=lambda order: order.expected_time + order.created)
 
     def get(self, request):
         queryset = self.get_queryset(request)
@@ -78,6 +80,9 @@ class OrderList(APIView):
                                                       datetime.timedelta()).total_seconds()/len(menus)))
 
         return result
+
+    def early(self, lhs, rhs):
+        return (lhs.expected_time + lhs.created) < (rhs.expected_time + rhs.created)
 
 
 class OrderDetail(APIView):
