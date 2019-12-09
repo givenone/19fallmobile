@@ -36,6 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:text="Menu Name"
+                        android:textStyle="bold"
                         android:textSize="20dp"/>
 
                     <TextView
@@ -51,13 +52,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="2">
                     <TextView
                         android:id="@+id/listview_detail_order_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:paddingRight="10dp"
                         android:text="Quantity"
                         android:textSize="18dp"/>
             </LinearLayout>

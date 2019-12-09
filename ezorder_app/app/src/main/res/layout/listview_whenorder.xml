@@ -1,120 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="75"
-        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffffff"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp">
 
-        <TextView
-            android:id="@+id/listview_whenorder_menuname"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_weight="60"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="menu's name"
-            android:textColor="#33aabb"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/listview_whenorder_menudes"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_weight="60"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="menu's description"
-            android:textColor="#33aabb"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/listview_whenorder_takeout"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_weight="60"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="ExpectedTime"
-            android:textColor="#33aabb"
-            android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/listview_whenorder_menuimage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/menu_img_sample" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/listview_whenorder_expectedTime"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_weight="60"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="ExpectedTime"
-            android:textColor="#33aabb"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="8">
+
+                <TextView
+                    android:id="@+id/listview_whenorder_menuname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Menu Name"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/listview_whenorder_menudes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Menu Description"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/listview_whenorder_takeout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Take Out"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/listview_whenorder_expectedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expected Time"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/listview_whenorder_menuOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Options"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+
+                    //이거는 구현이 안됐지만.. 일단 넣어봤어여. 안만들꺼면 빼도될꺼같아여
+                    <Button
+                        android:id="@+id/decrease"
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
+                        android:text="-" />
+                    //-----------------------------------------------
+
+                    <TextView
+                        android:id="@+id/listview_whenorder_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="0"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/listview_whenorder_button"
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
+                        android:text="+" />
+
+                    <Button
+                        android:id="@+id/listview_whenorder_button2"
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
+                        android:text="x" />
+                </LinearLayout>
 
 
-        <!--        <com.google.android.material.textfield.TextInputEditText-->
-        <!--            android:id="@+id/listview_whenorder_optionselect"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginLeft="20dp"-->
-        <!--            android:layout_marginTop="30dp"-->
-        <!--            android:layout_marginRight="20dp"-->
-        <!--            android:layout_marginBottom="5dp"-->
-        <!--            android:hint="Select Option"-->
-        <!--            android:inputType="text"-->
-        <!--            android:padding="12dp"-->
-        <!--            android:textColor="#000" />-->
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/listview_whenorder_menu_options"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="64dp"-->
-        <!--            android:layout_weight="60"-->
-        <!--            android:gravity="center_vertical"-->
-        <!--            android:paddingLeft="10dp"-->
-        <!--            android:text="menu's option"-->
-        <!--            android:textColor="#33aabb"-->
-        <!--            android:textStyle="bold" />-->
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/listview_whenorder_menuimage"
-        android:layout_width="wrap_content"
-        android:layout_height="160dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/listview_whenorder_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="20"
-        android:text="add" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        />
-
-    <Button
-        android:id="@+id/listview_whenorder_button2"
-        android:layout_width="31dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="delete" />
-
-    <TextView
-        android:id="@+id/listview_whenorder_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_weight="1"
-        android:text="TextView" />
 
 </LinearLayout>
+
